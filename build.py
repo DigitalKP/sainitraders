@@ -107,17 +107,59 @@ FAQ_PARENT=[("What is stretch film used for?","It is a stretchable plastic film 
 ("Do you supply single rolls as well as bulk?","Yes. Both single-roll and bulk requirements are welcome."),
 ("How can I get a quote?","Message us on WhatsApp or call 09140948445 or 07786843061. We discuss requirements individually, so no prices are listed on this website.")]
 
-def schema(extra=""):
-    return ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"%s/#business","name":"SAINI TRADERS","description":"Packaging company in Kanpur supplying stretch film.","url":"%s/","logo":"%s/assets/logo.webp","image":"%s/assets/stretch-film-pallet-hero.webp","telephone":["+919140948445","+917786843061"],"hasMap":"%s","address":{"@type":"PostalAddress","streetAddress":"D-95, Ispat Nagar, Bhautipratappur","addressLocality":"Kanpur","addressRegion":"Uttar Pradesh","postalCode":"208022","addressCountry":"IN"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"20:00"}]}</script>'%(DOMAIN,DOMAIN,DOMAIN,DOMAIN,GBP)) + extra
+import json
 
-def crumbs(items):
-    lis=",".join('{"@type":"ListItem","position":%d,"name":"%s","item":"%s%s"}'%(i+1,n,DOMAIN,u) for i,(n,u) in enumerate(items))
-    return '<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[%s]}</script>'%lis
+def schema(trail, faqs=None):
+    graph = [{
+        "@type": "LocalBusiness",
+        "@id": f"{DOMAIN}/#business",
+        "name": NAME,
+        "description": "Packaging company in Kanpur supplying hand-grade and machine-grade stretch film rolls.",
+        "url": f"{DOMAIN}/",
+        "logo": f"{DOMAIN}/assets/logo.webp",
+        "image": f"{DOMAIN}/assets/stretch-film-pallet-hero.webp",
+        "telephone": "+91-9140948445",
+        "hasMap": GBP,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "D-95, Ispat Nagar, Bhautipratappur",
+            "addressLocality": "Kanpur",
+            "addressRegion": "Uttar Pradesh",
+            "postalCode": "208022",
+            "addressCountry": "IN"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "09:00",
+            "closes": "20:00"
+        }
+    }]
+    if faqs:
+        graph.append({
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a}
+            } for q, a in faqs]
+        })
+    if len(trail) > 1:
+        graph.append({
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": i + 1,
+                "name": n,
+                "item": f"{DOMAIN}{u}"
+            } for i, (n, u) in enumerate(trail)]
+        })
+    return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
-def page(path,title,desc,h1,lead,body,trail):
+def page(path,title,desc,h1,lead,body,trail,faqs=None):
     bc=" &rsaquo; ".join(f'<a href="{BASE}{u}">{n}</a>' if i<len(trail)-1 else n for i,(n,u) in enumerate(trail))
     crumb=f'<nav class="crumb w" aria-label="Breadcrumb">{bc}</nav>' if len(trail)>1 else ""
-    ld=schema(crumbs(trail) if len(trail)>1 else "")
+    ld=schema(trail, faqs)
     locs=" ".join(f'<a href="{BASE}{url(l["slug"])}">{l["name"]}</a>' for l in LOCS)
     return f'''<!doctype html><html lang="en-IN"><head>
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-53L3GBT7"></script>
@@ -165,7 +207,7 @@ pbody=f'''<h2>Industrial Stretch Film Rolls for Packaging</h2>
 <h2>Single Roll and Bulk Stretch Film Supply</h2><p>Single-roll enquiries are welcome from small businesses and individuals, and we also discuss bulk requirements. We do not list prices on this website because requirements differ; contact us and we will respond to your enquiry.</p>
 <h2>Stretch Film Supplier Near You in Kanpur and Nearby Areas</h2><p>Our only address is D-95, Ispat Nagar, Kanpur. The pages below explain how we can help in each area. They are guides to local packaging needs, not separate branches.</p>{paras}
 <h2>Frequently Asked Questions</h2>{faq(FAQ_PARENT)}'''
-write(PARENT,page(PARENT,"Stretch Film Supplier Near Me in Kanpur | SAINI TRADERS","Hand-grade, machine-grade, transparent and black stretch film from SAINI TRADERS, Ispat Nagar, Kanpur. Call or WhatsApp for single-roll and bulk enquiries.","Stretch Film Supplier Near Me in Kanpur","Industrial stretch film rolls for pallet wrapping and packaging. Enquire by WhatsApp or phone.",pbody,[("Home","/"),("Stretch Film Supplier Near Me",PARENT)]))
+write(PARENT,page(PARENT,"Stretch Film Supplier Near Me in Kanpur | SAINI TRADERS","Hand-grade, machine-grade, transparent and black stretch film from SAINI TRADERS, Ispat Nagar, Kanpur. Call or WhatsApp for single-roll and bulk enquiries.","Stretch Film Supplier Near Me in Kanpur","Industrial stretch film rolls for pallet wrapping and packaging. Enquire by WhatsApp or phone.",pbody,[("Home","/"),("Stretch Film Supplier Near Me",PARENT)],FAQ_PARENT))
 
 # children
 for l in LOCS:
@@ -176,13 +218,14 @@ for l in LOCS:
 <p style="margin-top:16px"><a href="{BASE}{PARENT}">Explore our complete stretch film product range.</a> {nearl}</p>
 <h2>Where to find us</h2><p>Our address is {ADDR}. This is our only location; {l["name"]} customers reach us by phone, WhatsApp or a visit during business hours.</p>
 <h2>Frequently Asked Questions</h2>{faq(l["faqs"])}'''
-    write(url(l["slug"]),page(url(l["slug"]),l["title"],l["desc"],l["h1"],f"Enquire about stretch film rolls from SAINI TRADERS, Ispat Nagar, Kanpur.",body,[("Home","/"),("Stretch Film Supplier Near Me",PARENT),(l["h1"],url(l["slug"]))]))
+    write(url(l["slug"]),page(url(l["slug"]),l["title"],l["desc"],l["h1"],f"Enquire about stretch film rolls from SAINI TRADERS, Ispat Nagar, Kanpur.",body,[("Home","/"),("Stretch Film Supplier Near Me",PARENT),(l["h1"],url(l["slug"]))],l["faqs"]))
 
 # home
 hbody=f'''<h2>Packaging company in Kanpur</h2><p>SAINI TRADERS supplies stretch film rolls for factories, warehouses, traders and small businesses in and around Kanpur.</p>
 <p><a class="btn" href="{BASE}{PARENT}" style="color:#0b2447">View stretch film range</a></p>
-<h2>Areas we receive enquiries from</h2><div class="grid">{"".join(f'<div class="card"><h3><a href="{BASE}{url(l["slug"])}">{l["name"]}</a></h3></div>' for l in LOCS)}</div>'''
-write("/",page("/","SAINI TRADERS | Packaging Company in Kanpur","SAINI TRADERS, Ispat Nagar, Kanpur: stretch film rolls for industrial packaging. Call or WhatsApp for enquiries.","SAINI TRADERS, Packaging Company in Kanpur","Stretch film for pallet wrapping and industrial packaging.",hbody,[("Home","/")]))
+<h2>Areas we receive enquiries from</h2><div class="grid">{"".join(f'<div class="card"><h3><a href="{BASE}{url(l["slug"])}">{l["name"]}</a></h3></div>' for l in LOCS)}</div>
+<h2>Frequently Asked Questions</h2>{faq(FAQ_PARENT)}'''
+write("/",page("/","SAINI TRADERS | Packaging Company in Kanpur","SAINI TRADERS, Ispat Nagar, Kanpur: stretch film rolls for industrial packaging. Call or WhatsApp for enquiries.","SAINI TRADERS, Packaging Company in Kanpur","Stretch film for pallet wrapping and industrial packaging.",hbody,[("Home","/")],FAQ_PARENT))
 
 urls=["/",PARENT]+[url(l["slug"]) for l in LOCS]
 open(OUT+"/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{DOMAIN}{u}</loc></url>" for u in urls)+"</urlset>")
