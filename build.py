@@ -229,4 +229,51 @@ write("/",page("/","SAINI TRADERS | Packaging Company in Kanpur","SAINI TRADERS,
 
 urls=["/",PARENT]+[url(l["slug"]) for l in LOCS]
 open(OUT+"/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{DOMAIN}{u}</loc></url>" for u in urls)+"</urlset>")
-open(OUT+"/robots.txt","w").write(f"User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n")
+robots_content = f"""User-agent: *
+Allow: /
+Disallow:
+
+# Explicitly Allow All Major AI & Search Crawlers (AEO / GEO Ready)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: {DOMAIN}/sitemap.xml
+"""
+open(OUT+"/robots.txt","w").write(robots_content)
+
