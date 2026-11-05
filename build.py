@@ -119,7 +119,14 @@ def page(path,title,desc,h1,lead,body,trail):
     crumb=f'<nav class="crumb w" aria-label="Breadcrumb">{bc}</nav>' if len(trail)>1 else ""
     ld=schema(crumbs(trail) if len(trail)>1 else "")
     locs=" ".join(f'<a href="{BASE}{url(l["slug"])}">{l["name"]}</a>' for l in LOCS)
-    return f'''<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    return f'''<!doctype html><html lang="en-IN"><head>
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-53L3GBT7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title><meta name="description" content="{html.escape(desc)}"><meta name="google-site-verification" content="AGyL0ygXGcdupr7cqQcWE9-Uh1IIci3rVoyYxQLJXzg"><link rel="canonical" href="{DOMAIN}{path}">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{DOMAIN}{path}"><meta property="og:image" content="{DOMAIN}/assets/stretch-film-pallet-hero.webp"><meta property="og:type" content="website">
 <link rel="icon" href="{BASE}/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" href="{BASE}/assets/icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="{BASE}/assets/apple-touch-icon.png"><style>{CSS}</style>{ld}</head><body>
