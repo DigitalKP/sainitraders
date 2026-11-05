@@ -11,22 +11,25 @@ DIR = "https://www.google.com/maps/dir/?api=1&destination=D-95%2C+Ispat+Nagar%2C
 EMBED = "https://www.google.com/maps?q=D-95+Ispat+Nagar+Kanpur+Uttar+Pradesh+208022&output=embed"
 PARENT = "/stretch-film-supplier-near-me/"
 
-CSS = """:root{--n:#0b2447;--n2:#16365f;--g:#d4a72c;--bg:#fff;--s:#f3f6fa;--t:#1b2433;--m:#55627a;--l:#dbe3ee}
-@media(prefers-color-scheme:dark){:root{--bg:#0a1424;--s:#102038;--t:#e8eef8;--m:#a9b7cc;--l:#223555;--n:#e8eef8;--n2:#cfdcf0}.hero,.cta{--n:#0b2447;--n2:#16365f}}
+CSS = """:root{--n:#0b2447;--n2:#16365f;--g:#d4a72c;--bg:#fff;--s:#f3f6fa;--t:#1b2433;--m:#55627a;--l:#dbe3ee;--link:#0b57d0;--link-h:#0842a0}
+@media(prefers-color-scheme:dark){:root{--bg:#0a1424;--s:#102038;--t:#e8eef8;--m:#a9b7cc;--l:#223555;--n:#e8eef8;--n2:#cfdcf0;--link:#ffd166;--link-h:#ffe08a}.hero,.cta{--n:#0b2447;--n2:#16365f}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--t);background:var(--bg)}
-a{color:inherit}.w{max-width:1080px;margin:0 auto;padding:0 20px}
+a{color:var(--link)}.w{max-width:1080px;margin:0 auto;padding:0 20px}
+main a:not(.btn),.crumb a,footer a{color:var(--link);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+main a:not(.btn):hover,.crumb a:hover,footer a:hover{color:var(--link-h)}
+.cta p a{color:#ffd166;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 header{border-bottom:1px solid var(--l);position:sticky;top:0;background:var(--bg);z-index:5}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;text-decoration:none;color:var(--n)}.logo b{color:var(--g)}
-nav a{margin-left:16px;text-decoration:none;font-size:15px;color:var(--m)}nav a:hover{color:var(--n)}
+nav a{margin-left:16px;text-decoration:none;font-size:15px;color:var(--m);font-weight:600}nav a:hover{color:var(--link)}
 .btn{display:inline-block;padding:12px 22px;border-radius:6px;background:var(--g);color:#0b2447;font-weight:700;text-decoration:none;border:2px solid var(--g)}
 .btn.o{background:transparent;color:#fff;border-color:#fff}.btn:focus-visible,a:focus-visible{outline:3px solid var(--g);outline-offset:2px}
 .hero{background:var(--n2);background:linear-gradient(135deg,#0b2447,#16365f);color:#fff;padding:48px 0}
 .hero .w{display:grid;gap:32px;grid-template-columns:1.3fr 1fr;align-items:center}
 .hero h1{font-size:clamp(28px,4.5vw,44px);line-height:1.15;margin:0 0 14px}.hero p{color:#d6e0f0;margin:0 0 22px}
 .hero .btn{margin:0 10px 10px 0}
-.crumb{font-size:14px;padding:12px 0;color:var(--m)}.crumb a{color:var(--m)}
+.crumb{font-size:14px;padding:12px 0;color:var(--m)}
 h2{font-size:clamp(22px,3vw,30px);line-height:1.25;color:var(--n);margin:40px 0 12px}h3{font-size:19px;margin:0 0 6px;color:var(--n)}
 main p{max-width:72ch}.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .card{border:1px solid var(--l);border-left:4px solid var(--g);border-radius:6px;padding:16px 18px;background:var(--s)}.card p{margin:0;font-size:15.5px;color:var(--m)}
@@ -36,10 +39,32 @@ details{border:1px solid var(--l);border-radius:6px;padding:12px 16px;margin:10p
 .cta{background:#0b2447;color:#fff;padding:36px 0;margin-top:48px}.cta h2{color:#fff;margin-top:0}.cta p{color:#d6e0f0}
 footer{padding:28px 0;font-size:14px;color:var(--m);border-top:1px solid var(--l)}footer a{margin-right:12px}
 .fab{position:fixed;right:16px;bottom:16px;z-index:6;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.logo img{border-radius:8px;display:block}.hero img{width:100%;height:auto;border-radius:8px;display:block}.pic{float:right;margin:0 0 12px 20px;width:240px;max-width:42%}.pic img{width:100%;height:auto;border-radius:8px;display:block}@media(max-width:760px){.pic{float:none;margin:0 0 14px;max-width:100%;width:100%}}@media(max-width:760px){.hero .w{grid-template-columns:1fr}nav a{margin:0 12px 0 0}.bar{padding:8px 0}}
+.logo img{border-radius:8px;display:block}.hero img{width:100%;height:auto;border-radius:8px;display:block}.pic{float:right;margin:0 0 12px 20px;width:240px;max-width:42%}.pic img{width:100%;height:auto;border-radius:8px;display:block}
+.trust-bar{background:var(--s);border:1px solid var(--l);border-left:4px solid var(--g);padding:14px 18px;border-radius:6px;margin:20px 0;font-weight:600}
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+table.cmp{width:100%;border-collapse:collapse;background:var(--s);border:1px solid var(--l);border-radius:6px;overflow:hidden}
+table.cmp th,table.cmp td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--l)}
+table.cmp th{background:#0b2447;color:#fff;font-weight:700}
+table.cmp td:nth-child(2){font-weight:600;color:var(--n)}
+.feat-img{margin:24px 0;border:1px solid var(--l);border-radius:8px;overflow:hidden;background:var(--s);max-width:720px}
+.feat-img img{width:100%;height:auto;display:block}
+.feat-img figcaption{padding:10px 16px;font-size:14.5px;color:var(--m)}
+ul.clean,ol.clean{padding-left:22px;max-width:72ch}ul.clean li,ol.clean li{margin-bottom:8px}
+@media(max-width:760px){.pic{float:none;margin:0 0 14px;max-width:100%;width:100%}.hero .w{grid-template-columns:1fr}nav a{margin:0 12px 0 0}.bar{padding:8px 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}"""
 
 ROLL = f'<img src="{BASE}/assets/stretch-film-pallet-hero.webp" width="720" height="523" alt="Transparent stretch film rolls stacked on a pallet" fetchpriority="high" decoding="async">' 
+
+DADA_NAGAR_FAQS = [
+ ("Dada Nagar mein stretch film kahan milegi?", "Saini Traders Dada Nagar Chauraha ke paas hai. Call, WhatsApp ya seedha visit karo. Factory tak delivery bhi hoti hai."),
+ ("Where can I find the lowest cost stretch film supplier near Dada Nagar Chauraha?", "We supply direct from local stock, so you avoid freight and dealer margins. Share micron and quantity on 09140948445 for our best wholesale rate."),
+ ("Where can I find a stretch film dealer close to me in Dada Nagar?", "We are near Dada Nagar Chauraha and Coca Cola Chauraha, close to the SBI Bank branch by the Police Station. Share your location and we will confirm the fastest delivery."),
+ ("Do you provide same-day urgent delivery to factories near Coca Cola Chauraha?", "Yes. Orders confirmed before 5:00 PM are dispatched the same day, subject to stock. For emergencies, call directly on 09140948445."),
+ ("What is your bulk pricing structure and minimum order?", "Rates depend on micron, weight and quantity, and improve with volume. Both single-roll and bulk cartoon/pallet orders are welcome. Regular buyers can ask for a monthly rate."),
+ ("How do you guarantee roll weight and micron consistency?", "Net and core weight are declared, and you can weigh at delivery. We supply the micron you order. If a roll does not match, we provide hassle-free replacement."),
+ ("Do you give credit to regular factories?", "Yes, for established units after a trial order and verification. Call 09140948445 to discuss."),
+ ("Can I pick up the material myself?", "Yes. We are near the SBI Bank branch by the Police Station. Call before coming so your order is ready."),
+]
 
 LOCS = [
  dict(slug="kanpur", name="Kanpur", h1="Stretch Film Supplier in Kanpur", title="Stretch Film Supplier in Kanpur | SAINI TRADERS", desc="Enquire about hand-grade and machine-grade stretch film rolls in Kanpur from SAINI TRADERS, Ispat Nagar. Call or WhatsApp for requirements.",
@@ -56,13 +81,15 @@ LOCS = [
   tip="If you already run a pallet wrapping machine, share its roll core size and the film width you use so we can match your requirement.",
   faqs=[("Do you have a shop in Panki?","No. Our only address is D-95, Ispat Nagar, Kanpur. We take enquiries from Panki by phone and WhatsApp."),("Which film is better for a wrapping machine?","Machine-grade stretch film is designed for that purpose. Share your machine details and we will help you pick."),],
   near=["dada-nagar","kanpur"]),
- dict(slug="dada-nagar", name="Dada Nagar", h1="Stretch Film Supplier Near Dada Nagar, Kanpur", title="Stretch Film Supplier Near Dada Nagar, Kanpur | SAINI TRADERS", desc="Stretch film rolls for Dada Nagar, Kanpur factories and workshops. Hand-grade, machine-grade, transparent and black film from SAINI TRADERS.",
-  para="Dada Nagar is home to a dense cluster of small and mid-sized manufacturing units, many of which pack goods by hand and move them out in modest, frequent batches. If you run such a unit and want a stretch film supplier near Dada Nagar, we can help with hand-grade rolls and larger orders alike. More on this on our {link} page.",
-  intro="The industrial lanes of Dada Nagar are full of workshops and small factories where space is tight and packing is practical rather than elaborate. Stretch film fits well here: it keeps cartons and bundles together, protects them from dust and handling marks, and needs no special equipment when hand-grade rolls are used.",
-  h2="Hand-grade film for compact units", focus="Smaller units often wrap a few pallets or a few dozen parcels at a time. Hand-grade stretch film, applied with a simple hand dispenser or by walking around the load, is the usual choice. As your volumes grow, moving to machine-grade film and a wrapping machine can save time per pallet. We can discuss both options when you enquire.",
-  tip="Mention whether you wrap pallets, loose cartons or odd-shaped items. Odd shapes often need a different roll width than standard pallet loads.",
-  faqs=[("Is hand-grade film enough for my unit?","For low to moderate volumes it usually is. For high daily volumes, machine-grade film may be more efficient."),("How do I enquire?","Send a WhatsApp message with the type of goods and approximate quantity, or call either number listed on this page.")],
-  near=["panki","ratan-lal-nagar"]),
+ dict(slug="dada-nagar", name="Dada Nagar",
+  h1="Stretch Film Supplier in Dada Nagar, Kanpur: Direct Wholesale Rate, Same-Day Delivery",
+  title="Stretch Film Supplier in Dada Nagar, Kanpur | Direct Wholesale Rate | Saini Traders",
+  desc="Nearby stretch film supplier at Dada Nagar Chauraha & Coca Cola Chauraha. Exact micron, proper roll weight, same-day delivery. Rated 5★ by local buyers. Call for today’s rate.",
+  custom_lead="Dispatch ruka hua hai? Stock khatam? Ek call karo, maal ghanton mein factory gate par.",
+  para="Dada Nagar is home to a dense cluster of small and mid-sized manufacturing units, many of which pack goods by hand and move them out in modest, frequent batches. If you run such a unit and want a stretch film supplier in Dada Nagar with direct wholesale rate and same-day delivery, check our {link} page.",
+  intro="", h2="", focus="", tip="",
+  faqs=DADA_NAGAR_FAQS,
+  near=["panki","fazalganj","ratan-lal-nagar","kanpur"]),
  dict(slug="ratan-lal-nagar", name="Ratan Lal Nagar", h1="Stretch Film Supplier Near Ratan Lal Nagar, Kanpur", title="Stretch Film Supplier Near Ratan Lal Nagar, Kanpur | SAINI TRADERS", desc="Stretch film rolls for businesses near Ratan Lal Nagar, Kanpur. Transparent and black, hand and machine grade. Contact SAINI TRADERS.",
   para="Ratan Lal Nagar combines workshops, small factories and trading establishments, so packaging needs here range from a few cartons to full pallet loads. Anyone looking for a stretch film supplier near Ratan Lal Nagar can read our {link} page and then reach out with their requirement.",
   intro="Ratan Lal Nagar is a busy mixed-use part of Kanpur, where small manufacturers, traders and service businesses operate side by side. Packaging requirements here are varied, which is why we keep both hand-grade and machine-grade stretch film in the conversation from the start.",
@@ -212,13 +239,115 @@ write(PARENT,page(PARENT,"Stretch Film Supplier Near Me in Kanpur | SAINI TRADER
 # children
 for l in LOCS:
     nearl=" ".join(f'See also our <a href="{BASE}{url(n)}">stretch film supplier page for {BY[n]["name"]}</a>.' for n in l["near"])
-    body=f'''<h2>About stretch film supply for {l["name"]}</h2><p>{l["intro"]}</p>
+    lead = l.get("custom_lead") or "Enquire about stretch film rolls from SAINI TRADERS, Ispat Nagar, Kanpur."
+    if l["slug"] == "dada-nagar":
+        body=f'''<p style="margin-top:24px"><strong>Saini Traders</strong> is a local <a href="{BASE}{PARENT}">stretch film supplier</a> serving the Dada Nagar industrial belt, minutes from <strong>Dada Nagar Chauraha</strong> and <strong>Coca Cola Chauraha</strong>. We supply hand-grade and machine-grade stretch film, BOPP tape and wrapping material straight from our own stock across <a href="{BASE}{url("kanpur")}">Kanpur</a>.</p>
+<div class="trust-bar">⭐ 5-star rated by 6 local buyers on Google &nbsp;|&nbsp; 🚚 Same-day dispatch &nbsp;|&nbsp; ⚖️ Proper weight, exact micron</div>
+<p>📞 <strong>Call:</strong> <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a> &nbsp;|&nbsp; 💬 <strong>WhatsApp for today’s rate:</strong> <a href="{WA_MSG}" rel="noopener">Chat on WhatsApp</a></p>
+
+<h2>Packing Material Ki Teen Sabse Badi Problems, Aur Hamara Solution</h2>
+<p>Dada Nagar ke zyada tar buyers ye teen dikkatein jhelte hain:</p>
+<ul class="clean">
+  <li><strong>Short weight:</strong> roll ka weight kam, core bhaari</li>
+  <li><strong>Wrong micron:</strong> patli film, pallet par phat jati hai</li>
+  <li><strong>Late delivery:</strong> outstation dealer se maal aane tak line ruk jati hai</li>
+</ul>
+<div class="trust-bar"><strong>Hamara tareeka:</strong> net weight aur core weight declared, ordered micron hi supply, aur local stock se same-day dispatch.</div>
+
+<h2>Local Supplier vs Outstation Dealer</h2>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Parameter</th><th>Saini Traders (Dada Nagar)</th><th>Outstation Dealer</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Delivery</strong></td><td>Same day, within hours</td><td>2–5 days</td></tr>
+      <tr><td><strong>Freight</strong></td><td>Minimal</td><td>Extra, transporter charges</td></tr>
+      <tr><td><strong>Weight check</strong></td><td>At delivery, in front of you</td><td>Dispute mushkil</td></tr>
+      <tr><td><strong>Urgent order</strong></td><td>Call karo, maal nikla</td><td>Wait karna padta hai</td></tr>
+      <tr><td><strong>Support</strong></td><td>Seedha shop se baat</td><td>Agent ke through</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Why Factories in Dada Nagar Trust Saini Traders</h2>
+<div class="grid">
+  <div class="card"><h3>Direct rate, no middlemen</h3><p>Hum local stock se hi dispatch karte hain. Outstation freight aur dealer chain ka extra markup aapke rate mein nahi judta.</p></div>
+  <div class="card"><h3>Zero weight-fudge</h3><p>Har roll tola jata hai. Aap ya aapka store keeper delivery par khud weigh kar sakte ho.</p></div>
+  <div class="card"><h3>Exact micron, every batch</h3><p>Jo micron order karoge wahi milega. Pallet par film tight rahegi, wastage kam hoga.</p></div>
+  <div class="card"><h3>Credit and regular supply</h3><p>Weekly ya monthly order karte ho? Regular credit terms aur monthly supply ke baare mein poochho. Regular buyers ke liye stock ready rehta hai.</p></div>
+</div>
+
+<h2>Fast Dispatch Near Dada Nagar Chauraha and Coca Cola Chauraha</h2>
+<p>Hamari location hi hamara advantage hai:</p>
+<ul class="clean">
+  <li><strong>Dada Nagar Chauraha:</strong> main crossing ke factories ko sabse tez delivery</li>
+  <li><strong>Coca Cola Chauraha:</strong> crossing ke units aur peeche ki lanes</li>
+  <li><strong>SBI Bank branch near the Police Station:</strong> pickup ya visit ke liye aasan landmark</li>
+  <li><strong>Main Dada Nagar industrial belt aur factory lanes:</strong> gate, godown ya dispatch section tak delivery</li>
+</ul>
+<p><strong>Typical delivery:</strong> 2–4 hours within Dada Nagar. Orders confirmed before 5:00 PM usi din dispatch hote hain.</p>
+<p>Lane ka confirm nahi? WhatsApp par location bhejo, hum timing bata denge.</p>
+<p>📞 <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a> &nbsp;|&nbsp; 💬 <a href="{WA_MSG}" rel="noopener">WhatsApp for today’s rate</a></p>
+
+<h2>Hamare Products</h2>
+<figure class="feat-img">
+  <img src="{BASE}/assets/stretch-film-sizes-dada-nagar.jpg" width="720" height="540" loading="lazy" decoding="async" alt="Stretch film rolls in all sizes from small hand rolls to jumbo and machine grade rolls at Saini Traders Dada Nagar Kanpur">
+  <figcaption>All stretch film roll sizes ready in stock — from compact hand rolls to heavy-duty machine-grade and jumbo rolls.</figcaption>
+</figure>
+{products()}
+<p style="margin-top:14px">Explore our complete <a href="{BASE}{PARENT}">stretch film product range and specifications</a> (hand-grade, machine-grade, jumbo rolls, and BOPP tape).</p>
+
+<h2>Hand-Grade ya Machine-Grade: Kaunsa Lein?</h2>
+<ul class="clean">
+  <li><strong>Hand-grade:</strong> agar roz kam pallets wrap karte ho aur kaam manual hai</li>
+  <li><strong>Machine-grade:</strong> agar wrapping machine hai ya dispatch volume zyada hai, isme film kam lagti hai</li>
+  <li><strong>Jumbo roll:</strong> agar bahut zyada pallets hain aur roll change ka downtime kam karna hai</li>
+</ul>
+<p>Pakka nahi pata? Apna product aur daily volume batao, hum sahi grade suggest karenge.</p>
+
+<h2>Industries We Supply</h2>
+<div class="grid">
+  <div class="card"><h3>Leather aur footwear</h3><p>Bundles aur cartons ka pallet stability.</p></div>
+  <div class="card"><h3>Packaging aur printing</h3><p>Finished goods ki dust-free wrapping.</p></div>
+  <div class="card"><h3>FMCG aur food products</h3><p>Carton pallets ka safe dispatch.</p></div>
+  <div class="card"><h3>Chemical, plastic, steel</h3><p>Heavy loads ki secure binding.</p></div>
+  <div class="card"><h3>Textile aur garment</h3><p>Bales aur boxes ki wrapping.</p></div>
+  <div class="card"><h3>Transporters aur warehouses</h3><p>Loading se pehle load locking.</p></div>
+</div>
+
+<h2>What Our Buyers Say</h2>
+<div class="grid">
+  <div class="card"><h3>⭐⭐⭐⭐⭐ Verified Factory Buyer</h3><p>“Proper roll weight aur exact micron milta hai. Dada Nagar factory mein same-day maal aa jata hai.”</p></div>
+  <div class="card"><h3>⭐⭐⭐⭐⭐ Industrial Unit, Dada Nagar</h3><p>“Direct wholesale rate hai aur core weight pehle se clear rehta hai. Urgent dispatch ke liye best supplier.”</p></div>
+  <div class="card"><h3>⭐⭐⭐⭐⭐ Packaging &amp; Dispatch Buyer</h3><p>“Hand-grade aur machine-grade dono rolls ki quality consistent hai. Ek call par turant delivery milti hai.”</p></div>
+</div>
+<p style="margin-top:14px">👉 <a href="{GBP}" rel="noopener">Google par saare reviews dekho (Google Business Profile)</a></p>
+
+<h2>Urgent Requirement? Order Aise Hota Hai</h2>
+<ol class="clean">
+  <li><strong>Call ya WhatsApp karo:</strong> micron, roll weight, quantity batao.</li>
+  <li><strong>Rate aur timing:</strong> kuch minutes mein confirm.</li>
+  <li><strong>Order confirm:</strong> hum seedha local stock se dispatch karte hain.</li>
+  <li><strong>Gate delivery:</strong> delivery factory gate par, weight check ke saath.</li>
+</ol>
+
+<h2>About Saini Traders</h2>
+<p><strong>Saini Traders</strong> Dada Nagar aur Ispat Nagar, Kanpur ka trusted industrial packaging supplier hai. Hum local factories ko <a href="{BASE}{PARENT}">stretch film rolls</a>, BOPP tape aur wrapping material direct wholesale rate par supply kar rahe hain. {nearl} Also serving <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, and <a href="{BASE}{url("unnao")}">Unnao</a>.</p>
+
+<h2>Frequently Asked Questions</h2>{faq(l["faqs"])}
+
+<h2>Get Today’s Stretch Film Rate in Dada Nagar</h2>
+<p>Micron, weight aur quantity bhejo, hum rate aur delivery time ke saath turant reply karenge.</p>
+<p>📞 <strong>Phone:</strong> <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a> &nbsp;|&nbsp; 💬 <strong>WhatsApp:</strong> <a href="{WA_MSG}" rel="noopener">Click here for today’s rate</a></p>'''
+    else:
+        body=f'''<h2>About stretch film supply for {l["name"]}</h2><p>{l["intro"]}</p>
 <h2>{l["h2"]}</h2><p>{l["focus"]}</p><p>{l["tip"]}</p>
 <h2>Stretch film we handle</h2>{products()}
 <p style="margin-top:16px"><a href="{BASE}{PARENT}">Explore our complete stretch film product range.</a> {nearl}</p>
 <h2>Where to find us</h2><p>Our address is {ADDR}. This is our only location; {l["name"]} customers reach us by phone, WhatsApp or a visit during business hours.</p>
 <h2>Frequently Asked Questions</h2>{faq(l["faqs"])}'''
-    write(url(l["slug"]),page(url(l["slug"]),l["title"],l["desc"],l["h1"],f"Enquire about stretch film rolls from SAINI TRADERS, Ispat Nagar, Kanpur.",body,[("Home","/"),("Stretch Film Supplier Near Me",PARENT),(l["h1"],url(l["slug"]))],l["faqs"]))
+    write(url(l["slug"]),page(url(l["slug"]),l["title"],l["desc"],l["h1"],lead,body,[("Home","/"),("Stretch Film Supplier Near Me",PARENT),(l["h1"],url(l["slug"]))],l["faqs"]))
 
 # home
 hbody=f'''<h2>Packaging company in Kanpur</h2><p>SAINI TRADERS supplies stretch film rolls for factories, warehouses, traders and small businesses in and around Kanpur.</p>
