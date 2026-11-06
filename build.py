@@ -140,13 +140,15 @@ def schema(trail, faqs=None):
     graph = [{
         "@type": "LocalBusiness",
         "@id": f"{DOMAIN}/#business",
-        "name": NAME,
+        "name": "Saini Traders",
         "description": "Packaging company in Kanpur supplying hand-grade and machine-grade stretch film rolls.",
         "url": f"{DOMAIN}/",
         "logo": f"{DOMAIN}/assets/logo.webp",
         "image": f"{DOMAIN}/assets/stretch-film-pallet-hero.webp",
         "telephone": "+91-9140948445",
+        "priceRange": "₹₹",
         "hasMap": GBP,
+        "sameAs": [GBP],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "D-95, Ispat Nagar, Bhautipratappur",
@@ -154,6 +156,11 @@ def schema(trail, faqs=None):
             "addressRegion": "Uttar Pradesh",
             "postalCode": "208022",
             "addressCountry": "IN"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.4499,
+            "longitude": 80.3319
         },
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
