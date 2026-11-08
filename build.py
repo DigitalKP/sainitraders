@@ -1,6 +1,6 @@
 import os, html
-DOMAIN = "https://digitalkp.github.io/sainitraders"
-BASE = "/sainitraders"
+DOMAIN = "https://packagingtraders.in"
+BASE = ""
 OUT = os.path.dirname(os.path.abspath(__file__))
 NAME = "SAINI TRADERS"
 ADDR = "D-95, Ispat Nagar, Kanpur, Bhautipratappur, Uttar Pradesh 208022, India"
@@ -412,4 +412,6 @@ Allow: /
 Sitemap: {DOMAIN}/sitemap.xml
 """
 open(OUT+"/robots.txt","w").write(robots_content)
+open(OUT+"/CNAME","w").write("packagingtraders.in\n")
+
 

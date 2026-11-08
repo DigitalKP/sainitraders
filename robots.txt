@@ -42,4 +42,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://digitalkp.github.io/sainitraders/sitemap.xml
+Sitemap: https://packagingtraders.in/sitemap.xml
