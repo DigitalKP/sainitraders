@@ -205,7 +205,7 @@ def page(path,title,desc,h1,lead,body,trail,faqs=None):
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title><meta name="description" content="{html.escape(desc)}"><meta name="google-site-verification" content="AGyL0ygXGcdupr7cqQcWE9-Uh1IIci3rVoyYxQLJXzg"><link rel="canonical" href="{DOMAIN}{path}">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{DOMAIN}{path}"><meta property="og:image" content="{DOMAIN}/assets/stretch-film-pallet-hero.webp"><meta property="og:type" content="website">
-<link rel="icon" href="{BASE}/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" href="{BASE}/assets/icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="{BASE}/assets/apple-touch-icon.png"><style>{CSS}</style>{ld}</head><body>
+<link rel="icon" href="{BASE}/favicon.ico" sizes="48x48"><link rel="shortcut icon" href="{BASE}/favicon.ico"><link rel="icon" type="image/png" href="{BASE}/assets/icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="{BASE}/assets/apple-touch-icon.png"><style>{CSS}</style>{ld}</head><body>
 <header><div class="w bar"><a class="logo" href="{BASE}/"><img src="{BASE}/assets/logo.webp" width="40" height="40" alt="SAINI TRADERS logo"><span>SAINI <b>TRADERS</b></span></a><nav aria-label="Main"><a href="{BASE}{PARENT}">Stretch Film</a><a href="{BASE}{url("kanpur")}">Kanpur</a><a href="#contact">Contact</a></nav></div></header>
 {crumb}
 <section class="hero"><div class="w"><div><h1>{h1}</h1><p>{lead}</p><a class="btn" href="{WA_MSG}" rel="noopener">WhatsApp enquiry</a><a class="btn o" href="tel:+919140948445">Call 09140948445</a></div><div>{ROLL}</div></div></section>
@@ -407,6 +407,12 @@ User-agent: meta-externalagent
 Allow: /
 
 User-agent: CCBot
+Allow: /
+
+User-agent: Google-Favicon
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml

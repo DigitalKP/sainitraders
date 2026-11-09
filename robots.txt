@@ -42,4 +42,10 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+User-agent: Google-Favicon
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
 Sitemap: https://packagingtraders.in/sitemap.xml
