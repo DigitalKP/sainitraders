@@ -703,8 +703,18 @@ hbody=f'''<h2>Packaging company in Kanpur</h2><p>SAINI TRADERS supplies stretch 
 <h2>Frequently Asked Questions</h2>{faq(FAQ_PARENT)}'''
 write("/",page("/","SAINI TRADERS | Packaging Company in Kanpur","SAINI TRADERS, Ispat Nagar, Kanpur: stretch film rolls for industrial packaging. Call or WhatsApp for enquiries.","SAINI TRADERS, Packaging Company in Kanpur","Stretch film for pallet wrapping and industrial packaging.",hbody,[("Home","/")],FAQ_PARENT))
 
-urls=["/",PARENT]+[url(l["slug"]) for l in LOCS]+[BLOG_INDEX,BLOG_SLUG]
-open(OUT+"/sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+"".join(f"<url><loc>{DOMAIN}{u}</loc></url>" for u in urls)+"</urlset>")
+sitemap_entries = [
+    ("/", "1.0"),
+    (PARENT, "0.9"),
+] + [(url(l["slug"]), "0.8") for l in LOCS] + [
+    (BLOG_INDEX, "0.8"),
+    (BLOG_SLUG, "0.9"),
+]
+sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+for u, prio in sitemap_entries:
+    sitemap_xml += f"  <url>\n    <loc>{DOMAIN}{u}</loc>\n    <lastmod>2026-11-21</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>{prio}</priority>\n  </url>\n"
+sitemap_xml += "</urlset>\n"
+open(OUT+"/sitemap.xml","w").write(sitemap_xml)
 robots_content = f"""User-agent: *
 Allow: /
 Disallow:
