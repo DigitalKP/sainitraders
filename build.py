@@ -1,4 +1,5 @@
-import os, html
+import os, html, json
+
 DOMAIN = "https://packagingtraders.in"
 BASE = ""
 OUT = os.path.dirname(os.path.abspath(__file__))
@@ -10,6 +11,7 @@ GBP = "https://share.google/VzrvVFiXEuR6slk6Q"
 DIR = "https://www.google.com/maps/dir/?api=1&destination=D-95%2C+Ispat+Nagar%2C+Kanpur%2C+Uttar+Pradesh+208022"
 EMBED = "https://www.google.com/maps?q=D-95+Ispat+Nagar+Kanpur+Uttar+Pradesh+208022&output=embed"
 PARENT = "/stretch-film-supplier-near-me/"
+LASTMOD = "2026-11-25"
 
 CSS = """:root{--n:#0b2447;--n2:#16365f;--g:#d4a72c;--bg:#fff;--s:#f3f6fa;--t:#1b2433;--m:#55627a;--l:#dbe3ee;--link:#0b57d0;--link-h:#0842a0}
 @media(prefers-color-scheme:dark){:root{--bg:#0a1424;--s:#102038;--t:#e8eef8;--m:#a9b7cc;--l:#223555;--n:#e8eef8;--n2:#cfdcf0;--link:#ffd166;--link-h:#ffe08a}.hero,.cta{--n:#0b2447;--n2:#16365f}}
@@ -68,95 +70,181 @@ ul.clean,ol.clean{padding-left:22px;max-width:72ch}ul.clean li,ol.clean li{margi
 @media(max-width:760px){.pic{float:none;margin:0 0 14px;max-width:100%;width:100%}.hero .w{grid-template-columns:1fr}nav a{margin:0 12px 0 0}.bar{padding:8px 0}.cta-inline{padding:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}"""
 
-ROLL = f'<img src="{BASE}/assets/stretch-film-pallet-hero.webp" width="720" height="523" alt="Transparent stretch film rolls stacked on a pallet" fetchpriority="high" decoding="async">' 
+ROLL = f'<img src="{BASE}/assets/stretch-film-pallet-hero.webp" width="720" height="523" alt="Transparent stretch film rolls stacked on a pallet" fetchpriority="high" decoding="async">'
 
 DADA_NAGAR_FAQS = [
- ("Dada Nagar mein stretch film kahan milegi?", "Saini Traders Dada Nagar Chauraha ke paas hai. Call, WhatsApp ya seedha visit karo. Factory tak delivery bhi hoti hai."),
- ("Where can I find the lowest cost stretch film supplier near Dada Nagar Chauraha?", "We supply direct from local stock, so you avoid freight and dealer margins. Share micron and quantity on 09140948445 for our best wholesale rate."),
- ("Where can I find a stretch film dealer close to me in Dada Nagar?", "We are near Dada Nagar Chauraha and Coca Cola Chauraha, close to the SBI Bank branch by the Police Station. Share your location and we will confirm the fastest delivery."),
- ("Do you provide same-day urgent delivery to factories near Coca Cola Chauraha?", "Yes. Orders confirmed before 5:00 PM are dispatched the same day, subject to stock. For emergencies, call directly on 09140948445."),
- ("What is your bulk pricing structure and minimum order?", "Rates depend on micron, weight and quantity, and improve with volume. Both single-roll and bulk cartoon/pallet orders are welcome. Regular buyers can ask for a monthly rate."),
- ("How do you guarantee roll weight and micron consistency?", "Net and core weight are declared, and you can weigh at delivery. We supply the micron you order. If a roll does not match, we provide hassle-free replacement."),
- ("Do you give credit to regular factories?", "Yes, for established units after a trial order and verification. Call 09140948445 to discuss."),
- ("Can I pick up the material myself?", "Yes. We are near the SBI Bank branch by the Police Station. Call before coming so your order is ready."),
+    ("Dada Nagar mein stretch film kahan milegi?", "Saini Traders Dada Nagar Chauraha ke paas hai. Call, WhatsApp ya seedha visit karo. Factory tak delivery bhi hoti hai."),
+    ("Where can I find the lowest cost stretch film supplier near Dada Nagar Chauraha?", "We supply direct from local stock, so you avoid freight and dealer margins. Share micron and quantity on 09140948445 for our best wholesale rate."),
+    ("Where can I find a stretch film dealer close to me in Dada Nagar?", "We are near Dada Nagar Chauraha and Coca Cola Chauraha, close to the SBI Bank branch by the Police Station. Share your location and we will confirm the fastest delivery."),
+    ("Do you provide same-day urgent delivery to factories near Coca Cola Chauraha?", "Yes. Orders confirmed before 5:00 PM are dispatched the same day, subject to stock. For emergencies, call directly on 09140948445."),
+    ("What is your bulk pricing structure and minimum order?", "Rates depend on micron, weight and quantity, and improve with volume. Both single-roll and bulk carton/pallet orders are welcome. Regular buyers can ask for a monthly rate."),
+    ("How do you guarantee roll weight and micron consistency?", "Net and core weight are declared, and you can weigh at delivery. We supply the micron you order. If a roll does not match, we provide hassle-free replacement."),
+    ("Do you give credit to regular factories?", "Yes, for established units after a trial order and verification. Call 09140948445 to discuss."),
+    ("Can I pick up the material myself?", "Yes. We are near the SBI Bank branch by the Police Station. Call before coming so your order is ready."),
 ]
 
 LOCS = [
- dict(slug="kanpur", name="Kanpur", h1="Stretch Film Supplier in Kanpur", title="Stretch Film Supplier in Kanpur | SAINI TRADERS", desc="Enquire about hand-grade and machine-grade stretch film rolls in Kanpur from SAINI TRADERS, Ispat Nagar. Call or WhatsApp for requirements.",
-  para="Kanpur has long been a city of manufacturing, leather, textiles, chemicals and trading, and almost every one of those businesses ends the day by wrapping goods for dispatch. Our base in Ispat Nagar is within the city itself, so businesses across Kanpur can enquire about stretch film rolls without looking outside town. Our {link} page covers the grades we handle and how to enquire.",
-  intro="SAINI TRADERS is a packaging company located in Ispat Nagar, Kanpur. If your business is anywhere in the city and you are looking for stretch film rolls, this is the page to start with. We handle hand-grade and machine-grade stretch film in transparent and black variants, for single-roll and bulk requirements.",
-  h2="What Kanpur businesses usually wrap", focus="Kanpur's mix of factories, godowns, wholesale markets and transport operators means stretch film is used on very different loads: cartons stacked on pallets, bagged material, boxed electricals, rolled fabric, drums and loose machine parts. Hand-grade rolls suit small and medium dispatch volumes, while machine-grade rolls suit businesses that wrap a steady number of pallets every day.",
-  tip="Tell us what you pack, the pallet size and how many pallets you wrap in a typical week. That is usually enough for us to suggest a suitable grade and roll size.",
-  faqs=[("Where is SAINI TRADERS located in Kanpur?","Our address is D-95, Ispat Nagar, Kanpur, Bhautipratappur, Uttar Pradesh 208022. The directions button on this page opens it in Google Maps."),("Can I buy a single roll?","Yes, single-roll enquiries are welcome, as well as bulk requirements. Contact us on WhatsApp with your requirement.")],
-  near=["panki","fazalganj"]),
- dict(slug="panki", name="Panki", h1="Stretch Film Supplier Near Panki, Kanpur", title="Stretch Film Supplier Near Panki, Kanpur | SAINI TRADERS", desc="Looking for stretch film near Panki, Kanpur? SAINI TRADERS offers hand and machine grade stretch film rolls for industrial packaging. Enquire today.",
-  para="Panki is one of Kanpur's established industrial belts, with factories that dispatch finished goods on pallets every day. Businesses searching for a stretch film supplier near Panki can enquire with us about hand-grade and machine-grade rolls for pallet wrapping and load stabilising. Our {link} page has more detail for this area.",
-  intro="Panki is known for its factories and the steady movement of goods in and out of them. Units here often need stretch film in regular quantities, and a supplier they can reach by phone or WhatsApp rather than chasing through a long chain of middlemen. SAINI TRADERS serves enquiries from Panki with stretch film rolls for packaging and pallet wrapping.",
-  h2="Stretch film for factory dispatch near Panki", focus="For production units, the choice often comes down to volume. A unit wrapping a handful of pallets a day can work well with hand-grade rolls, while a unit with a dedicated wrapping station will usually prefer machine-grade film, which is made for use on a wrapping machine and a steady, repeatable wrap. Black stretch film is also used where contents should not be visible during transit.",
-  tip="If you already run a pallet wrapping machine, share its roll core size and the film width you use so we can match your requirement.",
-  faqs=[("Do you have a shop in Panki?","No. Our only address is D-95, Ispat Nagar, Kanpur. We take enquiries from Panki by phone and WhatsApp."),("Which film is better for a wrapping machine?","Machine-grade stretch film is designed for that purpose. Share your machine details and we will help you pick."),],
-  near=["dada-nagar","kanpur"]),
- dict(slug="dada-nagar", name="Dada Nagar",
-  h1="Stretch Film Supplier in Dada Nagar, Kanpur: Direct Wholesale Rate, Same-Day Delivery",
-  title="Stretch Film Supplier in Dada Nagar, Kanpur | Direct Wholesale Rate | Saini Traders",
-  desc="Nearby stretch film supplier at Dada Nagar Chauraha & Coca Cola Chauraha. Exact micron, proper roll weight, same-day delivery. Rated 5★ by local buyers. Call for today’s rate.",
-  custom_lead="Dispatch ruka hua hai? Stock khatam? Ek call karo, maal ghanton mein factory gate par.",
-  para="Dada Nagar is home to a dense cluster of small and mid-sized manufacturing units, many of which pack goods by hand and move them out in modest, frequent batches. If you run such a unit and want a stretch film supplier in Dada Nagar with direct wholesale rate and same-day delivery, check our {link} page.",
-  intro="", h2="", focus="", tip="",
-  faqs=DADA_NAGAR_FAQS,
-  near=["panki","fazalganj","ratan-lal-nagar","kanpur"]),
- dict(slug="ratan-lal-nagar", name="Ratan Lal Nagar", h1="Stretch Film Supplier Near Ratan Lal Nagar, Kanpur", title="Stretch Film Supplier Near Ratan Lal Nagar, Kanpur | SAINI TRADERS", desc="Stretch film rolls for businesses near Ratan Lal Nagar, Kanpur. Transparent and black, hand and machine grade. Contact SAINI TRADERS.",
-  para="Ratan Lal Nagar combines workshops, small factories and trading establishments, so packaging needs here range from a few cartons to full pallet loads. Anyone looking for a stretch film supplier near Ratan Lal Nagar can read our {link} page and then reach out with their requirement.",
-  intro="Ratan Lal Nagar is a busy mixed-use part of Kanpur, where small manufacturers, traders and service businesses operate side by side. Packaging requirements here are varied, which is why we keep both hand-grade and machine-grade stretch film in the conversation from the start.",
-  h2="Mixed packaging needs, one supplier", focus="A trader sending bundled stock to another city, a workshop wrapping finished parts, and a small manufacturer sending pallets to a distributor all use stretch film differently. We help you match the film to the job: transparent film when staff need to identify contents at a glance, and black film when privacy or light protection matters.",
-  tip="If your goods are sharp-edged or heavy, tell us. That can influence the film grade and how many wraps are sensible.",
-  faqs=[("Can I get both transparent and black film?","Yes. Both are part of our range, in hand-grade and machine-grade options."),("Do you list prices online?","No. Stretch film requirements vary, so we respond to enquiries individually.")],
-  near=["dada-nagar","kidwai-nagar"]),
- dict(slug="kidwai-nagar", name="Kidwai Nagar", h1="Stretch Film Supplier Near Kidwai Nagar, Kanpur", title="Stretch Film Supplier Near Kidwai Nagar, Kanpur | SAINI TRADERS", desc="Enquire for stretch film near Kidwai Nagar, Kanpur. SAINI TRADERS supplies hand and machine grade rolls for warehouses, traders and shippers.",
-  para="Kidwai Nagar has a strong commercial character, with shops, distributors and storage spaces that regularly repack and forward goods. Businesses here looking for a stretch film supplier near Kidwai Nagar can see what we handle on our {link} page, covering both single rolls and larger quantities.",
-  intro="Kidwai Nagar is a well-known commercial part of Kanpur, and trading and distribution are a big part of daily activity. For these businesses, stretch film is a routine consumable: it secures cartons on pallets, bundles loose items and protects parcels while they wait for transport.",
-  h2="Stretch film for distributors and storage", focus="Distributors tend to value consistency: the same film, reorder after reorder. If your stock moves through warehouses and onto goods carriers, a reliably clinging transparent film helps keep loads stable and lets you scan labels without unwrapping. For repackaged consumer goods, hand-grade rolls in smaller quantities are common.",
-  tip="Let us know how often you reorder. We can discuss whether single rolls or bulk quantities make more sense for you.",
-  faqs=[("Is bulk supply available for traders?","Bulk requirements are welcome. Share your quantity and we will respond to your enquiry."),("Can I visit before ordering?","You are welcome to visit our Ispat Nagar address during business hours, 9:00 AM to 8:00 PM, every day.")],
-  near=["ratan-lal-nagar","shastri-nagar"]),
- dict(slug="fazalganj", name="Fazalganj", h1="Stretch Film Supplier Near Fazalganj, Kanpur", title="Stretch Film Supplier Near Fazalganj, Kanpur | SAINI TRADERS", desc="Industrial stretch film supplier for Fazalganj, Kanpur. Hand and machine grade rolls for pallet wrapping and heavy goods. Call SAINI TRADERS.",
-  para="Fazalganj is an industrial area where metal parts, machinery and heavy consignments are a common sight. For businesses here, a stretch film supplier near Fazalganj needs to understand heavier, awkward loads. Our {link} page explains the options we handle.",
-  intro="Fazalganj has a long manufacturing tradition, and many units here pack heavier or more awkward goods than a typical carton warehouse: components, castings, drums and machinery parts. Stretch film cannot replace strapping on the heaviest loads, but it is widely used to hold items together and keep dust and moisture splashes off them.",
-  h2="Film choices for heavier loads", focus="Heavier loads generally call for more wraps and a film that holds tension well. Machine-grade film is often chosen where a wrapping machine applies consistent tension. Black film is sometimes preferred for parts where protection from light or concealing contents is useful. Tell us what you wrap, and we can talk through the best fit.",
-  tip="Share the approximate weight and shape of a typical load so we can discuss suitable film and wrapping practice.",
-  faqs=[("Can stretch film replace strapping?","For very heavy loads, film is usually used together with strapping or other securing. It holds items together and protects them."),("Which film suits metal parts?","It depends on the weight and shape. Contact us with details and we will advise.")],
-  near=["kanpur","shastri-nagar"]),
- dict(slug="shastri-nagar", name="Shastri Nagar", h1="Stretch Film Supplier Near Shastri Nagar, Kanpur", title="Stretch Film Supplier Near Shastri Nagar, Kanpur | SAINI TRADERS", desc="Stretch film rolls near Shastri Nagar, Kanpur for shops, home-based businesses and small traders. Enquire with SAINI TRADERS on call or WhatsApp.",
-  para="Shastri Nagar is largely residential and commercial, where home-based sellers, small shops and local service providers often need a few rolls of stretch film at a time. If that describes you, our {link} page explains how single-roll enquiries work.",
-  intro="Not every stretch film buyer runs a factory. In neighbourhoods like Shastri Nagar, many customers are small shopkeepers, online sellers working from home, and people who need to wrap furniture or household goods before a move. Hand-grade stretch film is the practical choice for all of them.",
-  h2="Single rolls for small businesses and moving", focus="Hand-grade rolls are easy to use without any machine, and a single roll goes a long way for parcel bundling, wrapping furniture and keeping stock tidy on shelves. If your business is growing, we can also talk through larger quantities when the time comes.",
-  tip="Mention what you want to wrap, such as furniture, cartons or appliances, and we will suggest a suitable roll.",
-  faqs=[("Do you sell small quantities?","Yes, single-roll enquiries are welcome."),("Is film suitable for wrapping furniture?","Yes, hand-grade film is commonly used for protecting furniture from dust and scratches while moving.")],
-  near=["kidwai-nagar","kanpur"]),
- dict(slug="unnao", name="Unnao", h1="Stretch Film Supplier in Unnao", title="Stretch Film Supplier in Unnao | SAINI TRADERS, Kanpur", desc="Stretch film enquiries from Unnao handled by SAINI TRADERS, Kanpur. Hand-grade and machine-grade rolls for industrial packaging and logistics.",
-  para="Unnao sits next to Kanpur and has its own industrial and trading activity, with many businesses already working with suppliers in Kanpur. If you are in Unnao and need stretch film, read our {link} page. Please note that our address is in Kanpur, and we discuss delivery arrangements individually.",
-  intro="Unnao is a separate district neighbouring Kanpur, with its own factories, godowns and traders. SAINI TRADERS operates from Ispat Nagar, Kanpur, and we welcome stretch film enquiries from Unnao businesses. We do not have an office in Unnao.",
-  h2="Enquiries from Unnao", focus="Because we are based in Kanpur, the best way to start is a call or WhatsApp message with your requirement: the film grade you use, the roll quantity and your location. We will respond with what we can offer and discuss any logistics directly, so there are no assumptions on either side.",
-  tip="Include your area in Unnao and your expected quantity in your first message to speed up the conversation.",
-  faqs=[("Do you have an office in Unnao?","No. Our only address is D-95, Ispat Nagar, Kanpur."),("Can you deliver to Unnao?","Delivery depends on the order and is discussed per enquiry. Please contact us for details.")],
-  near=["kanpur","panki"]),
+    dict(
+        slug="kanpur",
+        name="Kanpur",
+        short_blurb="Citywide direct wholesale & same-day stock from Ispat Nagar hub.",
+        h1="Wholesale Stretch Film Supplier in Kanpur",
+        title="Wholesale Stretch Film Rolls in Kanpur | SAINI TRADERS",
+        desc="Direct wholesale stretch film rolls in Kanpur from SAINI TRADERS, Ispat Nagar. Hand & machine grade, transparent & black rolls with fast city delivery.",
+        custom_lead="Direct wholesale hand-grade and machine-grade stretch film supplied across Kanpur from our Ispat Nagar stock.",
+        para="Kanpur has long been a city of manufacturing, leather, textiles, chemicals and trading, and almost every unit ends the shift by wrapping goods for dispatch. Our Ispat Nagar warehouse lets Kanpur buyers source stretch film rolls locally with transparent weight and quick dispatch. See our {link} page for citywide delivery details.",
+        faqs=[
+            ("Where is SAINI TRADERS located in Kanpur?", "Our warehouse is at D-95, Ispat Nagar, Bhautipratappur, Kanpur, Uttar Pradesh 208022. You can collect stock directly or arrange fast doorstep dispatch anywhere in Kanpur."),
+            ("Do you supply both single rolls and bulk wholesale lots in Kanpur?", "Yes. Retail traders, packers, and small workshops can order single rolls, while factories and godowns get direct wholesale rates on carton and monthly bulk quantities."),
+            ("What stretch film sizes and microns are stocked in Kanpur?", "We stock manual hand-grade rolls, high-tensile machine-grade rolls, and transparent or black LLDPE films across standard widths and micron grades. Share your load weight for an exact match."),
+            ("How quickly can urgent Kanpur orders be dispatched?", "Because stock is held locally in Ispat Nagar, confirmed orders within Kanpur industrial and commercial zones are dispatched promptly the same day."),
+        ],
+        near=["panki", "dada-nagar", "fazalganj"],
+    ),
+    dict(
+        slug="panki",
+        name="Panki",
+        short_blurb="Rapid dispatch to Panki Site 1–5 factories and NH-27 warehouses.",
+        h1="Stretch Film Supplier Near Panki, Kanpur",
+        title="Stretch Film Supplier in Panki, Kanpur | SAINI TRADERS",
+        desc="Industrial stretch film supplier for Panki Site 1–5 factories. Hand & machine pallet wrap rolls, exact micron, declared core weight & fast dispatch.",
+        custom_lead="Active direct delivery of hand-grade and machine-grade stretch film to Panki Site 1–5 factories and warehouses.",
+        para="Panki is one of Kanpur's busiest industrial corridors, home to chemical, plastic, engineering, and FMCG plants shipping palletised loads daily. Our Ispat Nagar stock sits minutes from the Panki belt for rapid replenishment. Read our {link} guide for factory supply options.",
+        faqs=[
+            ("How fast do you deliver stretch film to Panki Site 1 to Site 5?", "Our Ispat Nagar hub sits right next to the Panki industrial belt, so confirmed factory orders across Site 1–5 and nearby bypass warehouses are dispatched within hours."),
+            ("Can you match roll core size for automatic pallet wrappers in Panki?", "Yes. Share your turntable or pre-stretch wrapper's core ID, width, and preferred micron and we will supply compatible machine-grade rolls with consistent elongation."),
+            ("How do Panki buyers verify net film weight vs paper core weight?", "We declare paper core weight and net LLDPE film weight upfront on every batch, and your storekeeper is welcome to check weight on your factory scale at delivery."),
+            ("Do you support monthly standing supply for Panki manufacturing units?", "Yes. High-consumption units in Panki can lock in scheduled weekly or monthly replenishment so wrapping lines never stop for stockouts."),
+        ],
+        near=["dada-nagar", "kanpur", "unnao"],
+    ),
+    dict(
+        slug="dada-nagar",
+        name="Dada Nagar",
+        short_blurb="Same-day factory gate delivery near Dada Nagar & Coca Cola Chauraha.",
+        h1="Stretch Film Supplier in Dada Nagar, Kanpur: Direct Wholesale Rate, Same-Day Delivery",
+        title="Stretch Film Supplier Dada Nagar, Kanpur | SAINI TRADERS",
+        desc="Stretch film supplier serving Dada Nagar & Coca Cola Chauraha with same-day delivery, exact micron & verified roll weight. Call or WhatsApp for rates.",
+        custom_lead="Dispatch ruka hua hai? Stock khatam? Ek call karo, maal ghanton mein factory gate par.",
+        para="Dada Nagar is home to a dense cluster of manufacturing units packing footwear, leather, packaging, and FMCG cartons daily. If you need direct wholesale rates and same-day delivery in Dada Nagar, check our {link} page.",
+        faqs=DADA_NAGAR_FAQS,
+        near=["panki", "fazalganj", "ratan-lal-nagar", "kanpur"],
+    ),
+    dict(
+        slug="ratan-lal-nagar",
+        name="Ratan Lal Nagar",
+        short_blurb="Flexible roll supply for workshops, traders & mixed dispatch units.",
+        h1="Stretch Film Supplier Near Ratan Lal Nagar, Kanpur",
+        title="Stretch Film in Ratan Lal Nagar, Kanpur | SAINI TRADERS",
+        desc="Fast stretch film roll delivery in Ratan Lal Nagar, Kanpur. Hand & machine grade, clear & black pallet wrap for workshops & traders. Enquire today.",
+        custom_lead="Timely direct delivery of clear and black stretch film rolls for Ratan Lal Nagar workshops, traders, and commercial units.",
+        para="Ratan Lal Nagar blends fabrication workshops, small factories, and wholesale trading offices that wrap everything from bundled spares to stacked cartons. Explore our {link} page for tailored roll options and quick dispatch.",
+        faqs=[
+            ("Can Ratan Lal Nagar workshops order mixed transparent and black rolls together?", "Yes. You can combine clear rolls for barcode-visible cartons and opaque black rolls for high-value or light-sensitive goods in the same delivery."),
+            ("How soon do deliveries reach Ratan Lal Nagar after confirmation?", "We actively dispatch across south-west Kanpur from Ispat Nagar. Share your lane landmark on WhatsApp and we will confirm exact same-day delivery timing."),
+            ("Which roll width works best for small cartons and fabricated parts?", "Smaller bundles and workshop hardware wrap cleanly with compact hand rolls, while full transit cartons use standard 18–20 inch rolls to cut wrapping time."),
+            ("Why don't you display fixed stretch film prices online?", "Virgin LLDPE resin rates shift weekly and cost depends on micron, net weight, and order volume. Calling or messaging gets you today's exact wholesale rate."),
+        ],
+        near=["dada-nagar", "kidwai-nagar", "kanpur"],
+    ),
+    dict(
+        slug="kidwai-nagar",
+        name="Kidwai Nagar",
+        short_blurb="Consistent reorders for wholesalers, godowns & Transport Nagar shippers.",
+        h1="Stretch Film Supplier Near Kidwai Nagar, Kanpur",
+        title="Stretch Film in Kidwai Nagar, Kanpur | SAINI TRADERS",
+        desc="Wholesale & single-roll stretch film supply in Kidwai Nagar, Kanpur for distributors, warehouses & shops. Transparent & black rolls. Call SAINI TRADERS.",
+        custom_lead="Reliable reorder stretch film rolls delivered directly to Kidwai Nagar distributors, shops, and Transport Nagar dispatch teams.",
+        para="Kidwai Nagar and the adjoining commercial corridor run on daily wholesale trade, repacking, and inter-city goods forwarding. Visit our {link} page to see how distributors keep consistent wrapping film in stock.",
+        faqs=[
+            ("Do you deliver directly to godowns in Kidwai Nagar and nearby Transport Nagar?", "Yes. Our local dispatch team actively covers Kidwai Nagar, Babu Purwa, and Transport Nagar corridors so your loading bays receive rolls on time."),
+            ("Can distributors reorder the exact same film quality every month?", "Yes. Once we note your preferred micron, cling level, and roll weight, every repeat batch matches those specs so staff don't struggle with brittle or loose film."),
+            ("Is clear film strong enough to keep shipping labels readable in transit?", "Our high-clarity transparent stretch film locks cartons tightly while allowing transporters and warehouse staff to scan barcodes and read challans without cutting the wrap."),
+            ("What is the minimum quantity for Kidwai Nagar shops or traders?", "There is no rigid factory-only minimum. You can start with a few trial hand rolls and move to carton-level wholesale pricing as your dispatch grows."),
+        ],
+        near=["ratan-lal-nagar", "shastri-nagar", "kanpur"],
+    ),
+    dict(
+        slug="fazalganj",
+        name="Fazalganj",
+        short_blurb="High-tensile & puncture-resistant wrap for metal, machinery & heavy loads.",
+        h1="Stretch Film Supplier Near Fazalganj, Kanpur",
+        title="Stretch Film in Fazalganj, Kanpur | SAINI TRADERS",
+        desc="Heavy-duty stretch film rolls for Fazalganj factories, metal parts & machinery dispatch. High-tensile hand & machine pallet wrap. Fast Kanpur delivery.",
+        custom_lead="Puncture-resistant industrial stretch film delivered promptly to Fazalganj engineering units, metal fabricators, and heavy godowns.",
+        para="Fazalganj is Kanpur's classic heavy-industry hub for metal components, castings, machinery spares, and drums that tear weak film immediately. Check our {link} page for heavy-load stretch wrap guidance.",
+        faqs=[
+            ("Why does ordinary thin stretch film snap on Fazalganj metal and machinery loads?", "Sharp corners on castings, steel fabrications, and wooden crates puncture low-micron film. Higher-micron LLDPE with stronger tear resistance holds tight without zippering."),
+            ("Should heavy Fazalganj pallets use strapping along with stretch film?", "Yes. For dense metal parts or industrial drums, PP/PET strapping anchors the core load while stretch film unitises the stack and blocks dust, oil mist, and moisture splashes."),
+            ("Do you supply black opaque film for precision parts and export machinery?", "Yes. Black heavy-duty stretch film shields bright metal surfaces from UV exposure and keeps expensive machine components concealed during open-truck transit."),
+            ("How fast is delivery to Fazalganj factories along Kalpi Road?", "We actively service Fazalganj Industrial Area and Kalpi Road units with prompt local dispatch from our Kanpur stock—just call or WhatsApp your spec."),
+        ],
+        near=["kanpur", "dada-nagar", "shastri-nagar"],
+    ),
+    dict(
+        slug="shastri-nagar",
+        name="Shastri Nagar",
+        short_blurb="Single rolls & starter packs for shops, online sellers & home shifting.",
+        h1="Stretch Film Supplier Near Shastri Nagar, Kanpur",
+        title="Stretch Film in Shastri Nagar, Kanpur | SAINI TRADERS",
+        desc="Buy single rolls or bulk stretch film in Shastri Nagar, Kanpur for shops, online sellers & furniture shifting. Easy hand-grade wrap. Call or WhatsApp.",
+        custom_lead="Easy-handling hand-grade stretch film delivered promptly in Shastri Nagar for retail shops, e-commerce sellers, and household shifting.",
+        para="Shastri Nagar combines busy retail markets, home-based online sellers, and residential blocks where buyers need practical hand rolls rather than factory pallets. Read our {link} page for single-roll and shifting wrap details.",
+        faqs=[
+            ("Can I buy just 1 or 2 stretch film rolls in Shastri Nagar for house shifting?", "Yes. We welcome single-roll enquiries for wrapping sofas, wooden wardrobes, mattresses, and appliances so furniture stays scratch-free and dust-free during moving."),
+            ("Will hand-grade stretch film leave sticky glue marks on polished furniture?", "No. Unlike adhesive tape, LLDPE stretch film clings only to itself, not to wood, glass, or upholstery—so it peels off cleanly without leaving residue."),
+            ("Do you supply lightweight rolls for home-based Amazon, Flipkart, or Meesho sellers?", "Yes. Compact hand-grade rolls and opaque black wrap are popular among online sellers in Shastri Nagar for bundling multi-box orders and protecting branded cartons."),
+            ("Can I get quick delivery in Shastri Nagar or pick up myself?", "Both options work. Message your Shastri Nagar block on WhatsApp for timely delivery, or pick up directly from our Ispat Nagar counter between 9 AM and 8 PM."),
+        ],
+        near=["kidwai-nagar", "fazalganj", "kanpur"],
+    ),
+    dict(
+        slug="unnao",
+        name="Unnao",
+        short_blurb="Direct bulk supply for Banthar, UPSIDC & Magarwara industrial belts.",
+        h1="Stretch Film Supplier in Unnao",
+        title="Stretch Film Supplier in Unnao | SAINI TRADERS, Kanpur",
+        desc="Bulk & industrial stretch film supply for Unnao factories, tanneries & warehouses from SAINI TRADERS, Kanpur. Hand & machine rolls. Request rate today.",
+        custom_lead="Reliable wholesale stretch film supply from Kanpur for Banthar Leather Park, UPSIDC Site 1 & 2, and Magarwara units in Unnao.",
+        para="Unnao's industrial clusters across Banthar, Magarwara, and UPSIDC corridors frequently source packaging consumables directly from Kanpur stockists. View our {link} page for Unnao bulk dispatch arrangements.",
+        faqs=[
+            ("Which industrial areas in Unnao do you supply stretch film to?", "We handle enquiries and scheduled bulk dispatches for factories and warehouses across Banthar Leather Park, UPSIDC Site 1 & 2, Magarwara, Shuklaganj, and the Kanpur–Lucknow highway belt."),
+            ("Why do Unnao tanneries and export units source stretch film from SAINI TRADERS?", "Direct Kanpur stock means faster highway turnaround than distant outstation mills, transparent net vs core weight on every carton, and consistent micron quality for export bales."),
+            ("What order quantity makes delivery to Unnao most cost-effective?", "Carton-level and bulk pallet orders give the lowest delivered per-kg rate to Unnao. Share your exact location and roll count on WhatsApp for a clear landed estimate."),
+            ("Can Unnao buyers inspect sample rolls before placing a monthly bulk order?", "Yes. You can request a trial quantity or visit our Ispat Nagar, Kanpur stock point to inspect film clarity, cling, and exact roll weight before committing to recurring supply."),
+        ],
+        near=["kanpur", "panki", "dada-nagar"],
+    ),
 ]
-BY={l["slug"]:l for l in LOCS}
-def url(s): return f"/stretch-film-supplier-in-{s}/"
+BY = {l["slug"]: l for l in LOCS}
 
-FAQ_PARENT=[("What is stretch film used for?","It is a stretchable plastic film wrapped around goods or pallets to hold them together and protect them from dust and handling during storage and transport."),
-("What is the difference between hand-grade and machine-grade stretch film?","Hand-grade rolls are meant to be applied manually. Machine-grade rolls are designed for pallet wrapping machines and consistent, repeatable wrapping."),
-("Do you supply single rolls as well as bulk?","Yes. Both single-roll and bulk requirements are welcome."),
-("How can I get a quote?","Message us on WhatsApp or call 09140948445 or 07786843061. We discuss requirements individually, so no prices are listed on this website.")]
 
-import json
+def url(s):
+    return f"/stretch-film-supplier-in-{s}/"
+
+
+FAQ_HOME = [
+    ("What is stretch film used for in industrial packaging?", "LLDPE stretch film wraps tightly around stacked cartons, pallets, drums, and loose bundles to lock loads together and shield goods from dust, scuffs, and transit moisture."),
+    ("What is the difference between hand-grade and machine-grade stretch film?", "Hand-grade rolls are lighter and built for manual wrapping or hand dispensers. Machine-grade rolls are wound for semi-automatic or automatic pallet wrappers requiring steady pre-stretch tension and higher output."),
+    ("How do I check I am getting real net film weight and not a heavy paper core?", "Always ask for declared gross weight, paper core weight, and net film weight separately. SAINI TRADERS declares both weights upfront and allows weight verification at delivery."),
+    ("Do you supply both single rolls and wholesale bulk quantities in Kanpur?", "Yes. Shopkeepers, movers, and small units can order single rolls, while factories and godowns receive direct wholesale rates on carton and recurring monthly orders."),
+    ("How fast can SAINI TRADERS deliver across Kanpur and nearby areas?", "Because we maintain ready stock at Ispat Nagar, Kanpur, we actively dispatch within hours to Panki, Dada Nagar, Fazalganj, Ratan Lal Nagar, Kidwai Nagar, Shastri Nagar, and coordinate bulk dispatches to Unnao."),
+]
+
+FAQ_PARENT = [
+    ("What is stretch film used for?", "It is a stretchable LLDPE plastic film wrapped around goods or pallets to hold them together and protect them from dust and handling during storage and transport."),
+    ("What is the difference between hand-grade and machine-grade stretch film?", "Hand-grade rolls are meant to be applied manually. Machine-grade rolls are designed for pallet wrapping machines and consistent, repeatable wrapping."),
+    ("Do you supply single rolls as well as bulk?", "Yes. Both single-roll and bulk wholesale requirements are welcome."),
+    ("How can I get today's stretch film rate?", "Message us on WhatsApp or call 09140948445 or 07786843061 with your film grade, micron, and roll quantity. We quote based on exact specs and live volume rates."),
+]
+
 
 def schema(trail, faqs=None, article=None):
     graph = [{
         "@type": "LocalBusiness",
         "@id": f"{DOMAIN}/#business",
-        "name": "Saini Traders",
-        "description": "Packaging company in Kanpur supplying hand-grade and machine-grade stretch film rolls.",
+        "name": NAME,
+        "description": "Industrial packaging and stretch film supplier in Ispat Nagar, Kanpur supplying hand-grade, machine-grade, transparent and black LLDPE stretch film rolls across Kanpur and Unnao.",
         "url": f"{DOMAIN}/",
         "logo": f"{DOMAIN}/assets/logo.webp",
         "image": f"{DOMAIN}/assets/stretch-film-pallet-hero.webp",
@@ -164,25 +252,30 @@ def schema(trail, faqs=None, article=None):
         "priceRange": "₹₹",
         "hasMap": GBP,
         "sameAs": [GBP],
+        "areaServed": [
+            {"@type": "City", "name": "Kanpur"},
+            {"@type": "Place", "name": "Panki, Kanpur"},
+            {"@type": "Place", "name": "Dada Nagar, Kanpur"},
+            {"@type": "Place", "name": "Fazalganj, Kanpur"},
+            {"@type": "Place", "name": "Ratan Lal Nagar, Kanpur"},
+            {"@type": "Place", "name": "Kidwai Nagar, Kanpur"},
+            {"@type": "Place", "name": "Shastri Nagar, Kanpur"},
+            {"@type": "City", "name": "Unnao"},
+        ],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "D-95, Ispat Nagar, Bhautipratappur",
             "addressLocality": "Kanpur",
             "addressRegion": "Uttar Pradesh",
             "postalCode": "208022",
-            "addressCountry": "IN"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 26.4499,
-            "longitude": 80.3319
+            "addressCountry": "IN",
         },
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             "opens": "09:00",
-            "closes": "20:00"
-        }
+            "closes": "20:00",
+        },
     }]
     if article:
         graph.append({
@@ -192,13 +285,13 @@ def schema(trail, faqs=None, article=None):
             "image": article["image"],
             "datePublished": article["datePublished"],
             "dateModified": article["dateModified"],
-            "author": {"@type": "Organization", "name": "SAINI TRADERS", "url": f"{DOMAIN}/"},
+            "author": {"@type": "Organization", "name": NAME, "url": f"{DOMAIN}/"},
             "publisher": {
                 "@type": "Organization",
-                "name": "SAINI TRADERS",
-                "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/assets/logo.webp"}
+                "name": NAME,
+                "logo": {"@type": "ImageObject", "url": f"{DOMAIN}/assets/logo.webp"},
             },
-            "mainEntityOfPage": {"@type": "WebPage", "@id": article["url"]}
+            "mainEntityOfPage": {"@type": "WebPage", "@id": article["url"]},
         })
     if faqs:
         graph.append({
@@ -206,8 +299,8 @@ def schema(trail, faqs=None, article=None):
             "mainEntity": [{
                 "@type": "Question",
                 "name": q,
-                "acceptedAnswer": {"@type": "Answer", "text": a}
-            } for q, a in faqs]
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            } for q, a in faqs],
         })
     if len(trail) > 1:
         graph.append({
@@ -216,72 +309,403 @@ def schema(trail, faqs=None, article=None):
                 "@type": "ListItem",
                 "position": i + 1,
                 "name": n,
-                "item": f"{DOMAIN}{u}"
-            } for i, (n, u) in enumerate(trail)]
+                "item": f"{DOMAIN}{u}",
+            } for i, (n, u) in enumerate(trail)],
         })
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False) + '</script>'
 
-def page(path,title,desc,h1,lead,body,trail,faqs=None,hero_img=None,og_image=None,og_type="website",article=None):
-    bc=" &rsaquo; ".join(f'<a href="{BASE}{u}">{n}</a>' if i<len(trail)-1 else n for i,(n,u) in enumerate(trail))
-    crumb=f'<nav class="crumb w" aria-label="Breadcrumb">{bc}</nav>' if len(trail)>1 else ""
-    ld=schema(trail, faqs, article)
-    locs=" ".join(f'<a href="{BASE}{url(l["slug"])}">{l["name"]}</a>' for l in LOCS)
+
+GTM_HEAD = """<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-53L3GBT7');</script>
+<!-- End Google Tag Manager -->"""
+
+GTM_BODY = """<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53L3GBT7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->"""
+
+
+def page(path, title, desc, h1, lead, body, trail, faqs=None, hero_img=None, og_image=None, og_type="website", article=None, robots=None):
+    bc = " &rsaquo; ".join(f'<a href="{BASE}{u}">{n}</a>' if i < len(trail) - 1 else n for i, (n, u) in enumerate(trail))
+    crumb = f'<nav class="crumb w" aria-label="Breadcrumb">{bc}</nav>' if len(trail) > 1 else ""
+    ld = schema(trail, faqs, article) if robots != "noindex" else ""
+    locs = " ".join(f'<a href="{BASE}{url(l["slug"])}">{l["name"]}</a>' for l in LOCS)
     img_tag = hero_img if hero_img is not None else ROLL
     og_img = og_image or f"{DOMAIN}/assets/stretch-film-pallet-hero.webp"
+    robots_tag = f'<meta name="robots" content="{robots}">' if robots else ""
+    canonical_tag = f'<link rel="canonical" href="{DOMAIN}{path}">' if path else ""
+    og_url_tag = f'<meta property="og:url" content="{DOMAIN}{path}">' if path else ""
+    t_esc = html.escape(title)
+    d_esc = html.escape(desc)
     return f'''<!doctype html><html lang="en-IN"><head>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-53L3GBT7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-</script>
+{GTM_HEAD}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)}</title><meta name="description" content="{html.escape(desc)}"><meta name="google-site-verification" content="AGyL0ygXGcdupr7cqQcWE9-Uh1IIci3rVoyYxQLJXzg"><link rel="canonical" href="{DOMAIN}{path}">
-<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{DOMAIN}{path}"><meta property="og:image" content="{og_img}"><meta property="og:type" content="{og_type}">
+<title>{t_esc}</title><meta name="description" content="{d_esc}">{robots_tag}<meta name="google-site-verification" content="AGyL0ygXGcdupr7cqQcWE9-Uh1IIci3rVoyYxQLJXzg">{canonical_tag}
+<meta property="og:site_name" content="{NAME}"><meta property="og:title" content="{t_esc}"><meta property="og:description" content="{d_esc}">{og_url_tag}<meta property="og:image" content="{og_img}"><meta property="og:type" content="{og_type}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{t_esc}"><meta name="twitter:description" content="{d_esc}"><meta name="twitter:image" content="{og_img}">
 <link rel="icon" href="{BASE}/favicon.ico" sizes="48x48"><link rel="shortcut icon" href="{BASE}/favicon.ico"><link rel="icon" type="image/png" href="{BASE}/assets/icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="{BASE}/assets/apple-touch-icon.png"><style>{CSS}</style>{ld}</head><body>
+{GTM_BODY}
 <header><div class="w bar"><a class="logo" href="{BASE}/"><img src="{BASE}/assets/logo.webp" width="40" height="40" alt="SAINI TRADERS logo"><span>SAINI <b>TRADERS</b></span></a><nav aria-label="Main"><a href="{BASE}{PARENT}">Stretch Film</a><a href="{BASE}{url("kanpur")}">Kanpur</a><a href="{BASE}/blog/">Blog</a><a href="#contact">Contact</a></nav></div></header>
 {crumb}
 <section class="hero"><div class="w"><div><h1>{h1}</h1><p>{lead}</p><a class="btn" href="{WA_MSG}" rel="noopener">WhatsApp enquiry</a><a class="btn o" href="tel:+919140948445">Call 09140948445</a></div><div>{img_tag}</div></div></section>
 <main class="w">{body}</main>
 <section class="cta" id="contact"><div class="w"><h2>Contact {NAME}</h2><p>{ADDR}<br>Open Monday to Sunday, 9:00 AM to 8:00 PM</p><p>Phone: <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a></p><a class="btn" href="{WA_MSG}" rel="noopener">Chat on WhatsApp</a> <a class="btn o" href="{DIR}" rel="noopener">Get directions</a> <a class="btn o" href="{GBP}" rel="noopener">View on Google Maps</a></div></section>
 <div class="w" style="padding-top:24px"><iframe class="map" title="SAINI TRADERS location map, Ispat Nagar, Kanpur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{EMBED}"></iframe></div>
-<footer><div class="w"><p><strong>{NAME}</strong>, packaging company, Kanpur.</p><p>{locs} <a href="{BASE}/blog/">Blog</a></p></div></footer>
+<footer><div class="w"><p><strong>{NAME}</strong> (packagingtraders.in) — Industrial Stretch Film &amp; Packaging Supplier, Ispat Nagar, Kanpur.</p><p>{locs} <a href="{BASE}/blog/">Blog</a></p></div></footer>
 <a class="btn fab" href="{WA_MSG}" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a></body></html>'''
 
-def faq(items): return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q,a in items)
 
-PRODUCTS = [("Hand grade stretch film","Rolls applied by hand or with a simple dispenser. Suited to parcels, furniture and low to moderate pallet volumes."),
-("Machine grade stretch film","Rolls made for pallet wrapping machines, for consistent wrapping at higher volumes."),
-("Transparent stretch film","Clear film that lets you see and scan contents, labels and barcodes without unwrapping."),
-("Black stretch film","Opaque film for concealing contents or shielding them from light during storage and transit.")]
-def products(): return '<div class="grid">'+"".join(f'<div class="card"><h3>{a}</h3><p>{b}</p></div>' for a,b in PRODUCTS)+"</div>"
+def faq(items):
+    return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in items)
 
-def write(path,content):
-    d=os.path.join(OUT,path.strip("/")); os.makedirs(d,exist_ok=True)
-    open(os.path.join(d,"index.html"),"w",encoding="utf-8").write(content)
 
-# parent
-paras="".join(f'<div class="loc"><h3>Stretch Film Supplier in {l["name"]}</h3><p>{l["para"].format(link=f"<a href=\"{BASE}{url(l[chr(115)+chr(108)+chr(117)+chr(103)])}\">Stretch Film Supplier in {l[chr(110)+chr(97)+chr(109)+chr(101)]}</a>")}</p></div>' for l in LOCS)
-pbody=f'''<h2>Industrial Stretch Film Rolls for Packaging</h2>
-<div class="pic"><img src="{BASE}/assets/stretch-film-rolls.webp" width="480" height="638" loading="lazy" decoding="async" alt="Rows of transparent stretch film rolls with cardboard cores"></div><p>SAINI TRADERS is a packaging company at Ispat Nagar, Kanpur. We handle industrial stretch film rolls used to hold, stabilise and protect goods during storage and transit. Whether you wrap a few parcels a week or several pallets a day, you can enquire with us about the film that suits your work.</p>
-<h2>Types of Stretch Film Available</h2>{products()}
-<h3 style="margin-top:20px">Hand Grade Stretch Film</h3><p>A practical choice for small units, shops and sellers. It needs no machine and is easy to apply around cartons, furniture and mixed loads.</p>
-<h3>Machine Grade Stretch Film</h3><p>Built for wrapping machines, where steady tension and speed matter. Often chosen by factories and warehouses with regular pallet output.</p>
-<h3>Transparent Stretch Film</h3><p>The everyday choice when labels and contents should stay visible during handling and inventory checks.</p>
-<h3>Black Stretch Film</h3><p>Used when contents should not be seen or when light exposure is a concern.</p>
-<h2>Stretch Film Applications</h2><div class="grid"><div class="card"><h3>Pallet wrapping</h3><p>Binds cartons and sacks into one stable unit.</p></div><div class="card"><h3>Industrial packaging</h3><p>Bundles parts, pipes, rolls and machine components.</p></div><div class="card"><h3>Shipment protection</h3><p>Shields parcels from dust, scuffs and handling marks.</p></div><div class="card"><h3>Manufacturing</h3><p>Keeps finished goods together between line and dispatch.</p></div></div>
-<h2>Stretch Film for Factories, Warehouses and Logistics</h2><p>Factories use stretch film at dispatch, warehouses use it to keep stored stock together, and logistics operators use it to protect consignments while they change hands. Each setting has its own volume and handling pattern, so tell us how you pack and we can discuss the right grade and roll size.</p>
-<h2>Single Roll and Bulk Stretch Film Supply</h2><p>Single-roll enquiries are welcome from small businesses and individuals, and we also discuss bulk requirements. We do not list prices on this website because requirements differ; contact us and we will respond to your enquiry.</p>
-<h2>Stretch Film Supplier Near You in Kanpur and Nearby Areas</h2><p>Our only address is D-95, Ispat Nagar, Kanpur. The pages below explain how we can help in each area. They are guides to local packaging needs, not separate branches.</p>{paras}
-<h2>Frequently Asked Questions</h2>{faq(FAQ_PARENT)}'''
-write(PARENT,page(PARENT,"Stretch Film Supplier Near Me in Kanpur | SAINI TRADERS","Hand-grade, machine-grade, transparent and black stretch film from SAINI TRADERS, Ispat Nagar, Kanpur. Call or WhatsApp for single-roll and bulk enquiries.","Stretch Film Supplier Near Me in Kanpur","Industrial stretch film rolls for pallet wrapping and packaging. Enquire by WhatsApp or phone.",pbody,[("Home","/"),("Stretch Film Supplier Near Me",PARENT)],FAQ_PARENT))
+PRODUCTS = [
+    ("Hand grade stretch film", "Rolls applied by hand or with a simple dispenser. Suited to parcels, furniture and low to moderate pallet volumes."),
+    ("Machine grade stretch film", "Rolls made for pallet wrapping machines, for consistent wrapping at higher volumes."),
+    ("Transparent stretch film", "Clear film that lets you see and scan contents, labels and barcodes without unwrapping."),
+    ("Black stretch film", "Opaque film for concealing contents or shielding them from light during storage and transit."),
+]
 
-# children
+
+def products():
+    return '<div class="grid">' + "".join(f'<div class="card"><h3>{a}</h3><p>{b}</p></div>' for a, b in PRODUCTS) + "</div>"
+
+
+def write(path, content):
+    d = os.path.join(OUT, path.strip("/"))
+    os.makedirs(d, exist_ok=True)
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(content)
+
+
+# ============================================================
+# 1. PARENT PAGE: /stretch-film-supplier-near-me/
+#    (Fixed duplicate H3s + added clear spec comparison table)
+# ============================================================
+paras = "".join(
+    f'<div class="loc"><h3>Stretch Film Supplier in {l["name"]}</h3><p>{l["para"].format(link=f"<a href=\"{BASE}{url(l[chr(115)+chr(108)+chr(117)+chr(103)])}\">Stretch Film Supplier in {l[chr(110)+chr(97)+chr(109)+chr(101)]}</a>")}</p></div>'
+    for l in LOCS
+)
+
+pbody = f'''<h2>Industrial Stretch Film Rolls for Packaging</h2>
+<div class="pic"><img src="{BASE}/assets/stretch-film-rolls.webp" width="480" height="638" loading="lazy" decoding="async" alt="Rows of transparent stretch film rolls with cardboard cores"></div>
+<p><strong>SAINI TRADERS</strong> (<em>packagingtraders.in</em>) supplies virgin LLDPE industrial stretch film rolls from Ispat Nagar, Kanpur. Whether your unit wraps a handful of courier cartons manually or dispatches dozens of export pallets daily on a turntable wrapper, we match film grade, micron, and roll weight directly to your load so film does not tear or waste budget.</p>
+<div class="trust-bar">Direct Local Stock &nbsp;|&nbsp; Declared Net &amp; Core Weight &nbsp;|&nbsp; Single-Roll to Bulk Wholesale Supply &nbsp;|&nbsp; Active Kanpur Dispatch</div>
+
+<h2>Types of Stretch Film Available</h2>
+<div class="grid">
+  <div class="card"><h3>Hand Grade Stretch Film</h3><p>Lightweight manual rolls applied by hand or dispenser. Ideal for shops, courier bundling, furniture protection, and units wrapping low-to-moderate pallet volumes without investing in machinery.</p></div>
+  <div class="card"><h3>Machine Grade Stretch Film</h3><p>High-elongation rolls engineered for semi-automatic and automatic pallet wrappers. Delivers consistent holding force, lower film consumption per pallet, and faster line speed for factories and godowns.</p></div>
+  <div class="card"><h3>Transparent Stretch Film</h3><p>High-clarity clear film that keeps carton shipping marks, GST invoices, and warehouse barcodes instantly scannable during storage, stock audits, and transit handovers.</p></div>
+  <div class="card"><h3>Black Stretch Film</h3><p>Opaque UV-shielding film that conceals high-value goods against pilferage, blocks sunlight on light-sensitive stock, and lets warehouses colour-code priority consignments.</p></div>
+</div>
+
+<h2>Stretch Film Quick Specification Overview</h2>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Film Variant</th><th>Application Method</th><th>Typical Use Case</th><th>Key Buyer Benefit</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Hand-Grade Clear</strong></td><td>Manual / Dispenser</td><td>Cartons, mixed loads, retail stock</td><td>Easy grip, instant barcode visibility</td></tr>
+      <tr><td><strong>Hand-Grade Black</strong></td><td>Manual / Dispenser</td><td>Valuables, e-commerce bundles, light-sensitive items</td><td>Privacy in transit &amp; dust shielding</td></tr>
+      <tr><td><strong>Machine-Grade Clear</strong></td><td>Turntable / Pre-Stretch Wrapper</td><td>High-volume factory &amp; warehouse pallets</td><td>Lower per-pallet film cost, uniform tension</td></tr>
+      <tr><td><strong>Machine-Grade Heavy Micron</strong></td><td>Automated Wrapping Line</td><td>Metal parts, chemical drums, sharp-corner loads</td><td>High puncture &amp; tear resistance</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Stretch Film Applications</h2>
+<div class="grid">
+  <div class="card"><h3>Pallet wrapping</h3><p>Binds stacked cartons and bags into one stable transport unit.</p></div>
+  <div class="card"><h3>Industrial packaging</h3><p>Bundles fabricated metal parts, pipes, textile rolls, and machine spares.</p></div>
+  <div class="card"><h3>Shipment protection</h3><p>Shields outbound parcels from warehouse dust, moisture splashes, and scuffs.</p></div>
+  <div class="card"><h3>Manufacturing dispatch</h3><p>Keeps finished production batches unitised from factory floor to loading truck.</p></div>
+</div>
+
+<h2>Stretch Film for Factories, Warehouses and Logistics</h2>
+<p>Every dispatch floor works differently: factories prioritise uninterrupted stock and consistent micron strength, warehouses need high clarity and dust control for stored pallets, and logistics operators require tight load locking before trucks hit highway routes. Share what you wrap, approximate pallet weight, and daily roll usage — we will recommend the right specification and also guide you via our <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">complete pallet wrapping buyer's guide</a>.</p>
+
+<h2>Single Roll and Bulk Stretch Film Supply</h2>
+<p>Both single-roll enquiries and carton/pallet wholesale orders are handled directly from our Ispat Nagar stock. Because virgin polymer pricing shifts with micron, width, and quantity, we quote live rates on call or WhatsApp with full net-weight and core-weight clarity.</p>
+
+<h2>Stretch Film Supplier Near You in Kanpur and Nearby Areas</h2>
+<p>From our warehouse at D-95, Ispat Nagar, Kanpur, we actively deliver across every major Kanpur industrial estate, wholesale market, and nearby Unnao belt:</p>
+{paras}
+
+<h2>Frequently Asked Questions</h2>
+{faq(FAQ_PARENT)}'''
+
+write(
+    PARENT,
+    page(
+        PARENT,
+        "Stretch Film Supplier Near Me in Kanpur | SAINI TRADERS",
+        "Need stretch film rolls near you in Kanpur? Hand, machine, transparent & black stretch film with verified net weight and fast dispatch. Call or WhatsApp.",
+        "Stretch Film Supplier Near Me in Kanpur",
+        "Industrial stretch film rolls for pallet wrapping and packaging. Enquire by WhatsApp or phone for live wholesale rates.",
+        pbody,
+        [("Home", "/"), ("Stretch Film Supplier Near Me", PARENT)],
+        FAQ_PARENT,
+    ),
+)
+
+# ============================================================
+# 2. AREA PAGES (Unique, deep, zero boilerplate overlap!)
+# ============================================================
+AREA_BODIES = {
+    "kanpur": f'''<h2>Direct Kanpur Stretch Film Supply Without Outstation Delays</h2>
+<p>Kanpur runs on daily dispatch — from leather and footwear exports to engineering parts, chemicals, textiles, FMCG cartons, and inter-city transport booking. Waiting three days for an outstation dealer or paying hidden transporter charges slows down your packing line. Operating directly from <strong>D-95, Ispat Nagar, Bhautipratappur</strong>, <strong>SAINI TRADERS</strong> keeps ready wholesale stock inside Kanpur so factories, godowns, and shops receive the exact rolls they ordered right on time.</p>
+<div class="trust-bar">Direct Ispat Nagar Stock &nbsp;|&nbsp; Same-Day Kanpur Dispatch &nbsp;|&nbsp; Honest Net vs Core Weight &nbsp;|&nbsp; Single Roll to Bulk Wholesale</div>
+
+<h2>How Different Kanpur Sectors Use Stretch Film</h2>
+<p>Packaging requirements shift sharply across Kanpur's industrial and wholesale belts. Rather than pushing one generic roll to everyone, we match LLDPE film thickness, cling, and roll width to what leaves your floor every evening:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Kanpur Industry / Trade</th><th>Typical Load Packed</th><th>Recommended Roll Setup</th><th>Primary Goal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Leather &amp; Footwear Units</strong></td><td>Master export cartons &amp; bundled hides</td><td>Clear or black hand/machine film</td><td>Moisture barrier &amp; tight carton locking</td></tr>
+      <tr><td><strong>Engineering &amp; Metal Fabrication</strong></td><td>Machinery spares, castings, drums</td><td>Higher-micron puncture-resistant wrap</td><td>Stop corner tearing during crane/forklift move</td></tr>
+      <tr><td><strong>FMCG, Agro &amp; Consumer Goods</strong></td><td>Uniform stacked pallets</td><td>Pre-stretch machine-grade clear roll</td><td>Cut film cost per pallet &amp; keep barcodes readable</td></tr>
+      <tr><td><strong>Wholesale Markets &amp; Transporters</strong></td><td>Mixed parcels, textile bales, hardware</td><td>Flexible manual hand-grade rolls</td><td>Quick bundling with zero adhesive residue</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>What to Check Before Finalising a Kanpur Stretch Film Rate</h2>
+<p>Many Kanpur buyers compare only the per-roll price and end up paying more per wrapped pallet. Before confirming any quotation, check four numbers side by side:</p>
+<ul class="clean">
+  <li><strong>Paper core weight vs. net LLDPE weight:</strong> A cheap 3 kg gross roll with a 900 g core gives far less usable film than an honest roll with a light, standard core.</li>
+  <li><strong>True micron consistency:</strong> Under-gauge film snaps mid-wrap, forcing workers to double the layers and burn extra rolls every week.</li>
+  <li><strong>Roll width matched to load height:</strong> Standard wide rolls speed up pallet wrapping, while narrow utility rolls reduce overhang waste on small bundles.</li>
+  <li><strong>Local replacement accountability:</strong> Sourcing directly inside Kanpur lets your storekeeper verify weight on delivery and resolve batch issues immediately.</li>
+</ul>
+
+<h2>Citywide Coverage Across Kanpur Industrial &amp; Commercial Zones</h2>
+<p>Our active delivery network covers all major Kanpur belts directly from Ispat Nagar, including <a href="{BASE}{url("panki")}">Panki Industrial Area</a>, <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("fazalganj")}">Fazalganj</a>, <a href="{BASE}{url("ratan-lal-nagar")}">Ratan Lal Nagar</a>, <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, and <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, alongside scheduled bulk orders for <a href="{BASE}{url("unnao")}">Unnao</a>. Review our full <a href="{BASE}{PARENT}">stretch film specifications</a> or read our <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">pallet wrapping buyer's guide</a> before requesting today's rate.</p>
+
+<div class="cta-inline">
+  <h3>Need Today's Wholesale Stretch Film Rate in Kanpur?</h3>
+  <p>Send your micron, roll weight, or daily pallet count on WhatsApp. Our Ispat Nagar desk confirms live pricing and Kanpur delivery timing within minutes.</p>
+  <a class="btn" href="{WA_MSG}" rel="noopener">WhatsApp for Kanpur Rate</a>
+  <a class="btn o" href="tel:+919140948445">Call 09140948445</a>
+</div>
+
+<h2>Frequently Asked Questions — Kanpur Supply</h2>
+{faq(BY["kanpur"]["faqs"])}''',
+
+    "panki": f'''<h2>Factory-Grade Stretch Film Supply for Panki Site 1 to Site 5</h2>
+<p>Panki Industrial Area is Kanpur's high-throughput production corridor, with chemical plants, plastic processors, cold storages, engineering workshops, and NH-27 logistics warehouses shipping pallets around the clock. When a wrapping line runs dry mid-shift, waiting on an out-of-city vendor halts loading bays. Located right next door in <strong>Ispat Nagar (Bhautipratappur)</strong>, <strong>SAINI TRADERS</strong> delivers industrial stretch film straight to Panki factory gates quickly and reliably.</p>
+<div class="trust-bar">Minutes from Panki Industrial Belt &nbsp;|&nbsp; Machine &amp; Hand Grade Ready &nbsp;|&nbsp; Weight Verified at Gate &nbsp;|&nbsp; Scheduled Monthly Supply</div>
+
+<h2>Matching Stretch Film to Panki Production Lines</h2>
+<p>Factory dispatch in Panki involves heavier shift volumes and stricter transit distances along NH-27 and GT Road. Choosing between manual rolls and machine-grade rolls depends directly on daily pallet throughput:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Panki Unit Profile</th><th>Dispatch Load</th><th>Best Film Choice</th><th>Operational Advantage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Automated / Semi-Auto Wrapping Lines</strong></td><td>25+ pallets per day</td><td>High-elongation machine-grade LLDPE</td><td>Steady tension, fewer roll swaps, lower cost per pallet</td></tr>
+      <tr><td><strong>Chemical &amp; Resin Plants</strong></td><td>200L drums &amp; 25 kg bagged stacks</td><td>Heavy-micron transparent or black film</td><td>Prevents bag slip and shields against yard dust</td></tr>
+      <tr><td><strong>Plastic Moulding &amp; Pipe Units</strong></td><td>Bulky crates &amp; bundled pipes</td><td>High-cling manual stretch rolls</td><td>Fast irregular-shape bundling without scratching</td></tr>
+      <tr><td><strong>Bypass Warehouses &amp; Cold Stores</strong></td><td>Multi-SKU distribution pallets</td><td>High-clarity transparent stretch wrap</td><td>Instant barcode &amp; batch label scanning</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Why Panki Procurement Teams Switch to Local Direct Stock</h2>
+<ol class="clean">
+  <li><strong>Zero intermediate broker markup:</strong> Deal directly with our Ispat Nagar stock desk instead of paying agent commissions and long-distance freight.</li>
+  <li><strong>Core &amp; net weight transparency:</strong> Every delivery note clearly separates paper tube weight from net usable film so store audits stay clean.</li>
+  <li><strong>Machine compatibility checks:</strong> Share your pallet wrapper's spindle core size, roll width, and stretch ratio once — we keep matching specs stocked for repeat calls.</li>
+  <li><strong>Fast emergency top-ups:</strong> Even if a sudden export shipment spikes your daily requirement, local dispatch from Ispat Nagar keeps your Panki shift moving.</li>
+</ol>
+
+<h2>Ordering &amp; Dispatch for Panki Factories</h2>
+<p>Call or message your Panki site number (Site 1, 2, 3, 4, or 5), required micron, and roll quantity. We confirm live wholesale pricing and dispatch timing promptly. Also check our nearby industrial supply pages for <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("kanpur")}">Kanpur citywide wholesale</a>, and <a href="{BASE}{url("unnao")}">Unnao</a>, or browse all <a href="{BASE}{PARENT}">stretch film grades</a>.</p>
+
+<h2>Frequently Asked Questions — Panki Supply</h2>
+{faq(BY["panki"]["faqs"])}''',
+
+    "ratan-lal-nagar": f'''<h2>Flexible Stretch Film Delivery for Ratan Lal Nagar Workshops &amp; Traders</h2>
+<p>Ratan Lal Nagar sits at a busy commercial crossroads of south-west Kanpur where fabrication workshops, small manufacturing units, electrical suppliers, and wholesale traders operate side by side. Unlike large single-product mills, businesses here pack mixed daily consignments — ten cartons one morning, bundled hardware the next, and full transit pallets before weekend transport bookings. <strong>SAINI TRADERS</strong> supports Ratan Lal Nagar buyers with direct, timely delivery of both manual and machine-compatible stretch film rolls.</p>
+
+<h2>Tailored Wrapping Solutions for Mixed Commercial Loads</h2>
+<p>Because workshop and trading loads vary in size and edge sharpness, picking the right roll saves hours of repacking and stops torn corners:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Business Type in Ratan Lal Nagar</th><th>Common Consignment</th><th>Ideal Stretch Wrap</th><th>Why It Works</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Fabrication &amp; Tool Workshops</strong></td><td>Spare parts, metal brackets, boxed tools</td><td>Higher-micron manual hand roll</td><td>Resists puncture on corners &amp; keeps oil dust off</td></tr>
+      <tr><td><strong>Wholesale &amp; Electrical Traders</strong></td><td>Multi-box dealer orders &amp; switchgear</td><td>Clear transparent stretch film</td><td>Keeps invoice slips &amp; model stickers readable</td></tr>
+      <tr><td><strong>Small Packaging &amp; FMCG Units</strong></td><td>Stacked distributor cartons</td><td>Standard 18–20 inch pallet film</td><td>Fast manual wrap with strong elastic memory</td></tr>
+      <tr><td><strong>Sensitive / High-Value Shipments</strong></td><td>Branded stock &amp; confidential parcels</td><td>Opaque black stretch film</td><td>Hides contents during shared-truck transport</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Smart Buying Checklist for Ratan Lal Nagar Businesses</h2>
+<p>Small and mid-sized units often lose 15%–20% of their wrapping budget to hidden short-weight rolls or under-strength film bought from local hardware counters. Here is how we keep your packing spend predictable:</p>
+<ul class="clean">
+  <li><strong>Mix-and-match orders welcome:</strong> Order clear and black rolls together in the exact count you need instead of overstocking dead inventory.</li>
+  <li><strong>Declared core and film weight:</strong> Know the exact kilograms of usable LLDPE you are paying for before unloading at your shop or workshop.</li>
+  <li><strong>Practical load guidance:</strong> Tell us if your boxes have sharp edges, uneven heights, or long outstation transport legs — we suggest a suitable micron and wrap count.</li>
+  <li><strong>Timely local doorstep dispatch:</strong> Active delivery from our Ispat Nagar stock reaches Ratan Lal Nagar quickly without forcing you to close your counter and travel for material.</li>
+</ul>
+
+<h2>Nearby Supply Routes &amp; Buying Resources</h2>
+<p>We also actively serve neighbouring <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, and all of <a href="{BASE}{url("kanpur")}">Kanpur</a>. Compare roll specs on our <a href="{BASE}{PARENT}">stretch film range page</a> or read our <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">pallet wrapping guide</a> for micron and cost-per-kg tips.</p>
+
+<h2>Frequently Asked Questions — Ratan Lal Nagar Supply</h2>
+{faq(BY["ratan-lal-nagar"]["faqs"])}''',
+
+    "kidwai-nagar": f'''<h2>Reliable Stretch Film Reorders for Kidwai Nagar Distributors &amp; Godowns</h2>
+<p>Kidwai Nagar and the adjoining Transport Nagar–Babu Purwa belt move massive volumes of repacked wholesale goods, hardware, consumer goods, and regional distributor shipments every day. For trading houses and storage godowns, stretch film is not a one-off purchase — it is a daily consumable where inconsistent cling or sudden stockouts immediately slow down evening truck loading. <strong>SAINI TRADERS</strong> delivers consistent-grade stretch film directly to Kidwai Nagar shops, distributors, and dispatch warehouses.</p>
+
+<h2>How Kidwai Nagar Distributors &amp; Warehouses Cut Packing Waste</h2>
+<p>High-turnover distribution bays need film that unwinds quietly, clings reliably without snapping, and lets loaders verify dispatch manifests quickly:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Operation in Kidwai Nagar</th><th>Daily Packing Task</th><th>Best Roll Option</th><th>Key Benefit for Loaders</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>FMCG &amp; Pharma Distributors</strong></td><td>Palletising &amp; bundling dealer cartons</td><td>High-clarity transparent hand/machine wrap</td><td>Instant batch &amp; barcode check without cutting wrap</td></tr>
+      <tr><td><strong>Hardware &amp; Sanitary Traders</strong></td><td>Securing boxed fittings &amp; ceramic cartons</td><td>Heavy-hold manual stretch film</td><td>Locks heavy boxes tightly during tempo loading</td></tr>
+      <tr><td><strong>Transport Nagar Forwarding Agents</strong></td><td>Consolidating loose parcels per city</td><td>Wide transparent or black LLDPE rolls</td><td>Groups multiple parcels so nothing goes missing</td></tr>
+      <tr><td><strong>Retail &amp; Storage Godowns</strong></td><td>Dust-proofing seasonal shelf stock</td><td>Light-to-medium micron clear hand film</td><td>Blocks humidity &amp; dust during long storage</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Why Repeat Wholesale Buyers Stick With SAINI TRADERS</h2>
+<ul class="clean">
+  <li><strong>Same feel, reorder after reorder:</strong> Your packing staff get identical cling, stretch, and roll width every time you call — no surprises from random bazaar batches.</li>
+  <li><strong>No wasted rolls on heavy cores:</strong> We state paper core weight and net film weight plainly so your true per-kilogram rate stays transparent.</li>
+  <li><strong>Active timely delivery to loading bays:</strong> Confirm your order on phone or WhatsApp and receive direct local delivery in Kidwai Nagar before peak evening loading hours.</li>
+  <li><strong>Trial rolls to bulk cartons:</strong> Test a small batch first, then lock in wholesale carton pricing once your dispatch team approves the performance.</li>
+</ul>
+
+<h2>Connected Kanpur Coverage &amp; Resources</h2>
+<p>Operating multiple godowns? We also dispatch swiftly to <a href="{BASE}{url("ratan-lal-nagar")}">Ratan Lal Nagar</a>, <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, and <a href="{BASE}{url("kanpur")}">all Kanpur industrial hubs</a>. Explore our complete <a href="{BASE}{PARENT}">stretch film specifications</a> or review <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">how much stretch film is needed per pallet</a>.</p>
+
+<h2>Frequently Asked Questions — Kidwai Nagar Supply</h2>
+{faq(BY["kidwai-nagar"]["faqs"])}''',
+
+    "fazalganj": f'''<h2>Heavy-Duty Stretch Film for Fazalganj Engineering &amp; Metal Industries</h2>
+<p>Fazalganj Industrial Area has powered Kanpur's metalworking, foundry, machinery, auto-component, and heavy engineering sectors for decades. Packing cast-iron parts, steel fabrications, oil drums, and industrial crates is a completely different challenge from wrapping lightweight cardboard boxes. Thin commercial wrap tears on the first sharp flange. <strong>SAINI TRADERS</strong> supplies puncture-resistant, high-tensile stretch film tailored for Fazalganj's demanding factory loads — delivered directly and on schedule.</p>
+<div class="trust-bar">High-Tensile Heavy-Load Wrap &nbsp;|&nbsp; Puncture &amp; Tear Resistant &nbsp;|&nbsp; Clear &amp; Black Industrial Rolls &nbsp;|&nbsp; Prompt Fazalganj Dispatch</div>
+
+<h2>Engineering Load Challenges &amp; Recommended Film Pairing</h2>
+<p>Heavy and irregular consignments demand stronger holding force and smart layering techniques so loads stay locked through crane lifts and long-haul trucking:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Fazalganj Load Type</th><th>Main Wrapping Risk</th><th>Recommended Film Approach</th><th>Practical Tip</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Castings &amp; Machined Steel Parts</strong></td><td>Sharp metal edges puncturing wrap</td><td>Higher-micron LLDPE with strong tear stop</td><td>Add corner pads + extra bottom lock wraps</td></tr>
+      <tr><td><strong>Industrial Drums &amp; Barrels</strong></td><td>Drum shift &amp; sway on flatbed trucks</td><td>High-tension machine or heavy hand film</td><td>Combine with PP/PET strapping for heavy loads</td></tr>
+      <tr><td><strong>Machinery &amp; Export Crates</strong></td><td>Dust, rain splash &amp; pilferage in transit</td><td>Opaque black heavy-duty stretch film</td><td>Shields finish &amp; conceals high-value units</td></tr>
+      <tr><td><strong>Auto Components &amp; Spare Cartons</strong></td><td>Heavy stacked boxes bulging mid-route</td><td>Consistent-gauge clear pallet wrap</td><td>Keep shipping labels visible for OEM gates</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Getting Maximum Load Security Without Over-Wrapping</h2>
+<ol class="clean">
+  <li><strong>Specify true load weight &amp; edge profile:</strong> A 900 kg irregular metal pallet needs a different micron and stretch profile than a 400 kg uniform carton stack.</li>
+  <li><strong>Pair strapping with stretch film correctly:</strong> Use strapping to anchor extreme dead weight, and let stretch film unitise loose items and seal out moisture and workshop grime.</li>
+  <li><strong>Eliminate batch-to-batch gauge drops:</strong> Consistent virgin LLDPE stops sudden film breaks that force operators to double-wrap and inflate monthly packing cost.</li>
+  <li><strong>Direct local replenishment along Kalpi Road:</strong> Call or WhatsApp from your Fazalganj factory floor for swift local delivery without waiting on outstation transporters.</li>
+</ol>
+
+<h2>Serving Fazalganj &amp; Adjacent Kanpur Belts</h2>
+<p>In addition to Fazalganj, we actively deliver to <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, and <a href="{BASE}{url("kanpur")}">across Kanpur</a>. Check full specs on our <a href="{BASE}{PARENT}">stretch film supplier page</a> or read our <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">industrial pallet wrapping guide</a>.</p>
+
+<h2>Frequently Asked Questions — Fazalganj Supply</h2>
+{faq(BY["fazalganj"]["faqs"])}''',
+
+    "shastri-nagar": f'''<h2>Single Rolls &amp; Practical Hand-Grade Stretch Film in Shastri Nagar</h2>
+<p>Not every stretch film customer operates an industrial factory. Across Shastri Nagar's commercial markets, offices, and residential blocks, most buyers need clean, easy-to-handle stretch film in practical quantities — whether you are a home-based e-commerce seller dispatching daily courier parcels, a retail shop protecting shelf stock, or a family preparing furniture and appliances for house shifting. <strong>SAINI TRADERS</strong> welcomes single-roll orders as warmly as bulk shop supply, with prompt delivery right into Shastri Nagar.</p>
+
+<h2>Everyday Uses for Hand Stretch Film in Shastri Nagar</h2>
+<p>Hand-grade LLDPE film requires zero tools or heat guns — just unwind by hand, stretch slightly around the object, and press the tail flat so it self-seals cleanly:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Local Buyer Need</th><th>Items Being Wrapped</th><th>Best Roll Selection</th><th>Key Advantage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>House &amp; Office Shifting</strong></td><td>Sofas, wooden beds, mattresses, TVs, almirahs</td><td>Wide transparent hand-grade roll</td><td>Protects polish &amp; fabric with zero glue residue</td></tr>
+      <tr><td><strong>Online / E-Commerce Sellers</strong></td><td>Amazon, Flipkart &amp; Meesho multi-box parcels</td><td>Compact clear or opaque black roll</td><td>Bundles orders fast &amp; shields against monsoon rain</td></tr>
+      <tr><td><strong>Local Shops &amp; Showrooms</strong></td><td>Display items, garment stacks, spare inventory</td><td>Clear dust-protection hand film</td><td>Keeps unsold stock spotless &amp; easy to inspect</td></tr>
+      <tr><td><strong>Luggage &amp; Travel Protection</strong></td><td>Suitcases &amp; fragile cartons for rail/bus</td><td>Strong manual wrap roll</td><td>Prevents zip opening, scuffs &amp; tampering</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Why Shastri Nagar Shoppers &amp; Sellers Buy Direct Instead of Retail Packs</h2>
+<ul class="clean">
+  <li><strong>No factory-size minimum order:</strong> Order 1 roll for weekend shifting or 10 rolls for monthly online dispatches — both get friendly service and honest weights.</li>
+  <li><strong>Real industrial thickness, not flimsy kitchen cling:</strong> True LLDPE stretch film stretches smoothly and holds tightly without shredding like thin household food wrap.</li>
+  <li><strong>Clean removal on delicate surfaces:</strong> Because stretch film clings only to itself, it never strips varnish off teak furniture or leaves sticky tape marks on refrigerators and glass.</li>
+  <li><strong>Quick local delivery or easy pickup:</strong> Share your Shastri Nagar landmark on WhatsApp for timely delivery, or collect ready rolls directly from our Ispat Nagar counter (open 9 AM – 8 PM all 7 days).</li>
+</ul>
+
+<h2>Also Serving Nearby Kanpur Areas</h2>
+<p>Need commercial stock for a warehouse too? See our supply pages for <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, <a href="{BASE}{url("fazalganj")}">Fazalganj</a>, and <a href="{BASE}{url("kanpur")}">Kanpur citywide wholesale</a>, or view our full <a href="{BASE}{PARENT}">stretch film range</a>.</p>
+
+<h2>Frequently Asked Questions — Shastri Nagar Supply</h2>
+{faq(BY["shastri-nagar"]["faqs"])}''',
+
+    "unnao": f'''<h2>Direct Kanpur-to-Unnao Wholesale Stretch Film Supply</h2>
+<p>Unnao's thriving industrial zones — from <strong>Banthar Leather Park</strong> and <strong>UPSIDC Site 1 &amp; Site 2</strong> to <strong>Magarwara</strong> and the Kanpur–Lucknow highway logistics belt — rely on steady packaging consumables to keep export and domestic dispatches moving. Instead of dealing with slow out-of-state suppliers or opaque local middlemen, Unnao factories and warehouses source directly from <strong>SAINI TRADERS</strong> in Ispat Nagar, Kanpur for consistent film quality, transparent net weight, and smooth highway dispatch.</p>
+<div class="trust-bar">Direct Wholesale Rates for Unnao &nbsp;|&nbsp; Banthar, UPSIDC &amp; Magarwara Coverage &nbsp;|&nbsp; Verified Net Weight &nbsp;|&nbsp; Bulk &amp; Repeat Supply</div>
+
+<h2>Stretch Film Specifications Popular Across Unnao Industries</h2>
+<p>Unnao's export-oriented tanneries, agro-processing units, and industrial plants require dependable barrier protection and consistent tension across long highway and port-bound routes:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Unnao Industry Belt</th><th>Typical Export / Transit Load</th><th>Preferred Stretch Film</th><th>Key Performance Focus</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Banthar Leather &amp; Saddlery Park</strong></td><td>Export master cartons &amp; leather bales</td><td>Clear &amp; black moisture-barrier wrap</td><td>Clean presentation &amp; protection during port transit</td></tr>
+      <tr><td><strong>UPSIDC Site 1 &amp; Site 2 Factories</strong></td><td>Palletised industrial &amp; consumer goods</td><td>Machine-grade high-elongation rolls</td><td>Consistent tension &amp; reduced per-pallet film spend</td></tr>
+      <tr><td><strong>Magarwara &amp; Agro / Dairy Units</strong></td><td>High-volume carton stacks &amp; bagged produce</td><td>High-clarity transparent stretch wrap</td><td>Fast barcode scanning &amp; tight load containment</td></tr>
+      <tr><td><strong>Shuklaganj &amp; Highway Godowns</strong></td><td>Mixed wholesale &amp; inter-city cargo</td><td>Heavy-duty manual hand-grade rolls</td><td>Versatile securing for irregular mixed loads</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>How Unnao Bulk Orders &amp; Dispatch Work</h2>
+<ol class="clean">
+  <li><strong>Share your requirement on WhatsApp or call:</strong> Send your Unnao industrial area (Banthar, UPSIDC, Magarwara, or Shuklaganj), film type (hand/machine, clear/black), micron, and carton/roll quantity.</li>
+  <li><strong>Get a clear landed quotation:</strong> We quote per-kg / per-roll wholesale pricing with declared paper core weight, net film weight, and transparent transport arrangement — zero hidden charges.</li>
+  <li><strong>Optional sample or quality check:</strong> New factory buyers can start with a trial order or inspect rolls directly at our Ispat Nagar, Kanpur stock point.</li>
+  <li><strong>Dependable recurring supply:</strong> Once specs are locked, we reserve stock for your monthly dispatch cycle so Unnao lines never face packaging delays.</li>
+</ol>
+
+<h2>Connected Industrial Coverage</h2>
+<p>Explore our nearby Kanpur industrial hubs for <a href="{BASE}{url("kanpur")}">Kanpur wholesale</a>, <a href="{BASE}{url("panki")}">Panki Industrial Area</a>, and <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, browse all <a href="{BASE}{PARENT}">stretch film variants</a>, or read our <a href="{BASE}/blog/best-stretch-film-for-pallet-wrapping/">complete pallet wrapping buyer's guide</a>.</p>
+
+<h2>Frequently Asked Questions — Unnao Supply</h2>
+{faq(BY["unnao"]["faqs"])}''',
+}
+
 for l in LOCS:
-    nearl=" ".join(f'See also our <a href="{BASE}{url(n)}">stretch film supplier page for {BY[n]["name"]}</a>.' for n in l["near"])
+    nearl = " ".join(f'See also our <a href="{BASE}{url(n)}">stretch film supplier page for {BY[n]["name"]}</a>.' for n in l["near"])
     lead = l.get("custom_lead") or "Enquire about stretch film rolls from SAINI TRADERS, Ispat Nagar, Kanpur."
     if l["slug"] == "dada-nagar":
-        body=f'''<p style="margin-top:24px"><strong>Saini Traders</strong> is a local <a href="{BASE}{PARENT}">stretch film supplier</a> serving the Dada Nagar industrial belt, minutes from <strong>Dada Nagar Chauraha</strong> and <strong>Coca Cola Chauraha</strong>. We supply hand-grade and machine-grade stretch film, BOPP tape and wrapping material straight from our own stock across <a href="{BASE}{url("kanpur")}">Kanpur</a>.</p>
+        body = f'''<p style="margin-top:24px"><strong>Saini Traders</strong> is a local <a href="{BASE}{PARENT}">stretch film supplier</a> serving the Dada Nagar industrial belt, minutes from <strong>Dada Nagar Chauraha</strong> and <strong>Coca Cola Chauraha</strong>. We supply hand-grade and machine-grade stretch film, BOPP tape and wrapping material straight from our own stock across <a href="{BASE}{url("kanpur")}">Kanpur</a>.</p>
 <div class="trust-bar">⭐ 5-star rated by 6 local buyers on Google &nbsp;|&nbsp; 🚚 Same-day dispatch &nbsp;|&nbsp; ⚖️ Proper weight, exact micron</div>
 <p>📞 <strong>Call:</strong> <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a> &nbsp;|&nbsp; 💬 <strong>WhatsApp for today’s rate:</strong> <a href="{WA_MSG}" rel="noopener">Chat on WhatsApp</a></p>
 
@@ -332,7 +756,7 @@ for l in LOCS:
 
 <h2>Hamare Products</h2>
 <figure class="feat-img">
-  <img src="{BASE}/assets/stretch-film-sizes-dada-nagar.jpg" width="720" height="540" loading="lazy" decoding="async" alt="Stretch film rolls in all sizes from small hand rolls to jumbo and machine grade rolls at Saini Traders Dada Nagar Kanpur">
+  <img src="{BASE}/assets/stretch-film-sizes-dada-nagar.webp" width="500" height="375" loading="lazy" decoding="async" alt="Stretch film rolls in all sizes from small hand rolls to jumbo and machine grade rolls at Saini Traders Dada Nagar Kanpur">
   <figcaption>All stretch film roll sizes ready in stock — from compact hand rolls to heavy-duty machine-grade and jumbo rolls.</figcaption>
 </figure>
 {products()}
@@ -381,19 +805,29 @@ for l in LOCS:
 <p>Micron, weight aur quantity bhejo, hum rate aur delivery time ke saath turant reply karenge.</p>
 <p>📞 <strong>Phone:</strong> <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a> &nbsp;|&nbsp; 💬 <strong>WhatsApp:</strong> <a href="{WA_MSG}" rel="noopener">Click here for today’s rate</a></p>'''
     else:
-        body=f'''<h2>About stretch film supply for {l["name"]}</h2><p>{l["intro"]}</p>
-<h2>{l["h2"]}</h2><p>{l["focus"]}</p><p>{l["tip"]}</p>
-<h2>Stretch film we handle</h2>{products()}
-<p style="margin-top:16px"><a href="{BASE}{PARENT}">Explore our complete stretch film product range.</a> {nearl}</p>
-<h2>Where to find us</h2><p>Our address is {ADDR}. This is our only location; {l["name"]} customers reach us by phone, WhatsApp or a visit during business hours.</p>
-<h2>Frequently Asked Questions</h2>{faq(l["faqs"])}'''
-    write(url(l["slug"]),page(url(l["slug"]),l["title"],l["desc"],l["h1"],lead,body,[("Home","/"),("Stretch Film Supplier Near Me",PARENT),(l["h1"],url(l["slug"]))],l["faqs"]))
+        body = AREA_BODIES[l["slug"]]
+    crumb_label = l["name"]
+    write(
+        url(l["slug"]),
+        page(
+            url(l["slug"]),
+            l["title"],
+            l["desc"],
+            l["h1"],
+            lead,
+            body,
+            [("Home", "/"), ("Stretch Film Supplier Near Me", PARENT), (crumb_label, url(l["slug"]))],
+            l["faqs"],
+        ),
+    )
 
-# blog
+# ============================================================
+# 3. BLOG POST & BLOG INDEX (WebP image + tighter meta + richer index)
+# ============================================================
 BLOG_INDEX = "/blog/"
 BLOG_SLUG = "/blog/best-stretch-film-for-pallet-wrapping/"
-BLOG_IMG = f"{DOMAIN}/assets/best-stretch-film-for-pallet-wrapping.jpg"
-BLOG_HERO_TAG = f'<img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.jpg" width="1280" height="720" alt="Best Stretch Film for Pallet Wrapping — A Complete Buyer\'s Guide for Businesses by SAINI TRADERS" fetchpriority="high" decoding="async">'
+BLOG_IMG = f"{DOMAIN}/assets/best-stretch-film-for-pallet-wrapping.webp"
+BLOG_HERO_TAG = f'<img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.webp" width="1024" height="576" alt="Best Stretch Film for Pallet Wrapping — A Complete Buyer\'s Guide for Businesses by SAINI TRADERS" fetchpriority="high" decoding="async">'
 
 BLOG_FAQS = [
     ("1. What material is stretch film made from?", "Stretch film is generally made from Linear Low-Density Polyethylene (LLDPE). This flexible plastic material allows the film to stretch around products and hold pallet loads together."),
@@ -411,7 +845,7 @@ BLOG_BODY = f'''<div class="blog-meta">
   <span>&bull;</span>
   <span><strong>Category:</strong> <a href="{BASE}{BLOG_INDEX}">Industrial Packaging Guide</a></span>
   <span>&bull;</span>
-  <span><strong>Updated:</strong> November 21, 2026</span>
+  <span><strong>Updated:</strong> November 25, 2026</span>
 </div>
 
 <p>When products are stored or transported on pallets, keeping them secure is a major concern for businesses. Loose cartons, shifting loads, damaged packaging, and torn wrapping can create problems during storage and transportation. Choosing the wrong packaging material can also increase film consumption and overall packaging costs.</p>
@@ -634,8 +1068,8 @@ write(
     BLOG_SLUG,
     page(
         BLOG_SLUG,
-        "Best Stretch Film for Pallet Wrapping | SAINI TRADERS",
-        "Looking for the Best Stretch Film for Pallet Wrapping? Explore hand and machine stretch film options with SAINI TRADERS. Contact us today for product details and bulk pricing!",
+        "Best Stretch Film for Pallet Wrapping: Buyer's Guide",
+        "Compare hand vs machine stretch film, micron thickness, net vs core weight & price per kg. Complete pallet wrapping buyer's guide from SAINI TRADERS.",
         "Best Stretch Film for Pallet Wrapping: A Complete Buyer's Guide for Businesses",
         "Learn how to choose hand-grade vs machine-grade stretch film, compare microns and pricing per kg, and protect your pallet loads with SAINI TRADERS.",
         BLOG_BODY,
@@ -646,37 +1080,47 @@ write(
         og_type="article",
         article={
             "headline": "Best Stretch Film for Pallet Wrapping: A Complete Buyer's Guide for Businesses",
-            "description": "Looking for the Best Stretch Film for Pallet Wrapping? Explore hand and machine stretch film options with SAINI TRADERS. Contact us today for product details and bulk pricing!",
+            "description": "Compare hand vs machine stretch film, micron thickness, net vs core weight & price per kg. Complete pallet wrapping buyer's guide from SAINI TRADERS.",
             "image": BLOG_IMG,
             "url": f"{DOMAIN}{BLOG_SLUG}",
             "datePublished": "2026-11-21",
-            "dateModified": "2026-11-21",
+            "dateModified": LASTMOD,
         },
     ),
 )
 
 BLOG_INDEX_BODY = f'''<h2>Latest Packaging Guides &amp; Buying Resources</h2>
-<p>Practical guides from <a href="{BASE}/">SAINI TRADERS</a> to help factories, warehouses, and logistics teams choose the right <a href="{BASE}{PARENT}">stretch film for pallet packaging</a>, reduce material waste, and order smarter in bulk.</p>
+<p>Practical industrial packaging articles from <a href="{BASE}/">SAINI TRADERS</a> (<em>packagingtraders.in</em>) to help Kanpur and Unnao factories, warehouses, and logistics teams choose the right <a href="{BASE}{PARENT}">stretch film for pallet packaging</a>, cut film waste, and verify true per-kg value before ordering in bulk.</p>
+
 <div class="grid" style="margin-top:20px">
   <article class="blog-card">
-    <a href="{BASE}{BLOG_SLUG}"><img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Best Stretch Film for Pallet Wrapping Buyer's Guide"></a>
+    <a href="{BASE}{BLOG_SLUG}"><img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.webp" width="1024" height="576" loading="lazy" decoding="async" alt="Best Stretch Film for Pallet Wrapping Buyer's Guide"></a>
     <div class="bc-body">
       <span class="blog-tag">Buyer's Guide</span>
       <h3><a href="{BASE}{BLOG_SLUG}">Best Stretch Film for Pallet Wrapping: A Complete Buyer's Guide for Businesses</a></h3>
-      <p>Compare hand stretch film vs machine stretch film, understand micron thickness, price per kg factors, and avoid common pallet wrapping mistakes.</p>
+      <p>Compare hand stretch film vs machine stretch film, understand micron thickness, net vs core weight, price per kg factors, and avoid common pallet wrapping mistakes.</p>
       <a class="btn" href="{BASE}{BLOG_SLUG}" style="color:#0b2447">Read Full Guide &rarr;</a>
     </div>
   </article>
 </div>
-<h2 style="margin-top:44px">Explore Our Stretch Film Supply Areas</h2>
-<p>Need direct wholesale supply? Visit our <a href="{BASE}{PARENT}">Stretch Film Supplier Near Me</a> page or check area-specific supply for <a href="{BASE}{url("kanpur")}">Kanpur</a>, <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("panki")}">Panki</a>, and <a href="{BASE}{url("fazalganj")}">Fazalganj</a>.</p>'''
+
+<h2>Key Packaging Topics We Cover for Industrial Buyers</h2>
+<div class="grid">
+  <div class="card"><h3>Hand vs. Machine Grade Selection</h3><p>Calculate when daily pallet output justifies moving from manual rolls to pre-stretch machine film.</p></div>
+  <div class="card"><h3>Micron &amp; Load Matching</h3><p>Stop snapping and over-wrapping by matching LLDPE gauge to carton weight, sharp edges, and transit distance.</p></div>
+  <div class="card"><h3>Net Weight vs. Core Weight</h3><p>Learn how to compare wholesale per-kg quotations accurately without getting caught by heavy paper cores.</p></div>
+  <div class="card"><h3>Clear vs. Black Film Uses</h3><p>Choose transparent wrap for barcode scanning or opaque black film for pilferage control and UV protection.</p></div>
+</div>
+
+<h2>Explore Direct Stretch Film Supply Across Kanpur &amp; Unnao</h2>
+<p>Ready to order directly from local Kanpur stock? View our complete <a href="{BASE}{PARENT}">Stretch Film Range</a> or check active delivery details for <a href="{BASE}{url("kanpur")}">Kanpur</a>, <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("panki")}">Panki</a>, <a href="{BASE}{url("fazalganj")}">Fazalganj</a>, <a href="{BASE}{url("ratan-lal-nagar")}">Ratan Lal Nagar</a>, <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, and <a href="{BASE}{url("unnao")}">Unnao</a>.</p>'''
 
 write(
     BLOG_INDEX,
     page(
         BLOG_INDEX,
         "Packaging & Stretch Film Blog | SAINI TRADERS, Kanpur",
-        "Read practical industrial packaging and stretch film buying guides from SAINI TRADERS, Kanpur. Learn about hand vs machine stretch film, microns, and pallet wrapping.",
+        "Practical stretch film & pallet wrapping buying guides from SAINI TRADERS, Kanpur. Compare hand vs machine rolls, microns, net weight & cost per roll.",
         "SAINI TRADERS Packaging Blog",
         "Practical stretch film and pallet wrapping buyer's guides for factories, warehouses, and distributors.",
         BLOG_INDEX_BODY,
@@ -684,14 +1128,52 @@ write(
     ),
 )
 
-# home
-hbody=f'''<h2>Packaging company in Kanpur</h2><p>SAINI TRADERS supplies stretch film rolls for factories, warehouses, traders and small businesses in and around Kanpur.</p>
-<p><a class="btn" href="{BASE}{PARENT}" style="color:#0b2447">View stretch film range</a></p>
-<h2>Areas we receive enquiries from</h2><div class="grid">{"".join(f'<div class="card"><h3><a href="{BASE}{url(l["slug"])}">{l["name"]}</a></h3></div>' for l in LOCS)}</div>
+# ============================================================
+# 4. HOMEPAGE: / (Substantially expanded from 201 -> ~650+ words,
+#    keyword-first title & H1, product matrix, rich area cards)
+# ============================================================
+area_cards = "".join(
+    f'<div class="card"><h3><a href="{BASE}{url(l["slug"])}">{l["name"]}</a></h3><p>{l["short_blurb"]}</p></div>'
+    for l in LOCS
+)
+
+hbody = f'''<h2>Industrial Stretch Film Rolls Supplied Direct from Ispat Nagar, Kanpur</h2>
+<p><strong>SAINI TRADERS</strong> (<em>packagingtraders.in</em>) is a Kanpur-based industrial packaging supplier dealing in high-strength LLDPE <strong>stretch film rolls</strong> for pallet wrapping, factory dispatch, warehousing, and safe cargo transport. From our stock hub at <strong>D-95, Ispat Nagar, Bhautipratappur</strong>, we deliver both single rolls and bulk wholesale lots rapidly across Kanpur's industrial belts and neighbouring Unnao.</p>
+<div class="trust-bar">Direct Wholesale Stock &nbsp;|&nbsp; Declared Net &amp; Core Weight &nbsp;|&nbsp; Exact Micron Consistency &nbsp;|&nbsp; Fast Local Dispatch</div>
+<p><a class="btn" href="{BASE}{PARENT}" style="color:#0b2447">Explore Stretch Film Range &amp; Specs</a></p>
+
+<h2>Stretch Film Grades &amp; Variants Ready in Stock</h2>
+<p>Whether your floor packs manually or runs automated pallet wrappers, picking the right roll lowers per-pallet film usage and eliminates mid-wrap tearing:</p>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>Stretch Film Type</th><th>How It Is Applied</th><th>Best Suited For</th><th>Primary Advantage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Hand-Grade Stretch Film</strong></td><td>Manual / Hand Dispenser</td><td>Parcels, furniture, shops &amp; low-to-medium pallets</td><td>Easy handling with no machine investment</td></tr>
+      <tr><td><strong>Machine-Grade Stretch Film</strong></td><td>Pallet Wrapping Machine</td><td>Factories, godowns &amp; high daily pallet dispatch</td><td>Uniform wrap tension &amp; lower film consumption</td></tr>
+      <tr><td><strong>Transparent Stretch Film</strong></td><td>Hand or Machine</td><td>Barcoded cartons, FMCG &amp; warehouse inventory</td><td>Clear label &amp; content visibility without unwrapping</td></tr>
+      <tr><td><strong>Black Stretch Film</strong></td><td>Hand or Machine</td><td>High-value goods, export crates &amp; UV-sensitive stock</td><td>Opaque privacy &amp; protection from light exposure</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Why Kanpur Factories &amp; Traders Order Direct from SAINI TRADERS</h2>
+<div class="grid">
+  <div class="card"><h3>Transparent Net &amp; Core Weight</h3><p>Paper core weight and net LLDPE film weight are declared clearly upfront. Weigh rolls on your own scale at delivery with zero ambiguity.</p></div>
+  <div class="card"><h3>Consistent Micron Strength</h3><p>Ordered micron is supplied batch after batch so film stretches tightly around heavy or awkward loads without snapping.</p></div>
+  <div class="card"><h3>Active, Timely Local Delivery</h3><p>Ready local inventory in Kanpur eliminates 3–5 day outstation waits and unnecessary freight markups when dispatch lines need urgent material.</p></div>
+  <div class="card"><h3>Single Roll to Bulk Wholesale</h3><p>Order a single roll for retail or shifting, or set up regular carton and monthly supply for factories, tanneries, and distribution godowns.</p></div>
+</div>
+
+<h2>Areas We Actively Deliver Stretch Film To</h2>
+<p>We supply directly to manufacturing estates, commercial markets, and warehouses across Kanpur and Unnao. Select your area for tailored load guidance and delivery details:</p>
+<div class="grid">{area_cards}</div>
+
 <h2>Latest from Our Packaging Blog</h2>
 <div class="grid" style="margin-top:16px">
   <article class="blog-card">
-    <a href="{BASE}{BLOG_SLUG}"><img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.jpg" width="640" height="360" loading="lazy" decoding="async" alt="Best Stretch Film for Pallet Wrapping Buyer's Guide"></a>
+    <a href="{BASE}{BLOG_SLUG}"><img src="{BASE}/assets/best-stretch-film-for-pallet-wrapping.webp" width="1024" height="576" loading="lazy" decoding="async" alt="Best Stretch Film for Pallet Wrapping Buyer's Guide"></a>
     <div class="bc-body">
       <span class="blog-tag">Buyer's Guide</span>
       <h3><a href="{BASE}{BLOG_SLUG}">Best Stretch Film for Pallet Wrapping: A Complete Buyer's Guide</a></h3>
@@ -700,21 +1182,65 @@ hbody=f'''<h2>Packaging company in Kanpur</h2><p>SAINI TRADERS supplies stretch 
     </div>
   </article>
 </div>
-<h2>Frequently Asked Questions</h2>{faq(FAQ_PARENT)}'''
-write("/",page("/","SAINI TRADERS | Packaging Company in Kanpur","SAINI TRADERS, Ispat Nagar, Kanpur: stretch film rolls for industrial packaging. Call or WhatsApp for enquiries.","SAINI TRADERS, Packaging Company in Kanpur","Stretch film for pallet wrapping and industrial packaging.",hbody,[("Home","/")],FAQ_PARENT))
 
-sitemap_entries = [
-    ("/", "1.0"),
-    (PARENT, "0.9"),
-] + [(url(l["slug"]), "0.8") for l in LOCS] + [
-    (BLOG_INDEX, "0.8"),
-    (BLOG_SLUG, "0.9"),
+<h2>Frequently Asked Questions</h2>
+{faq(FAQ_HOME)}'''
+
+write(
+    "/",
+    page(
+        "/",
+        "Stretch Film Roll Supplier in Kanpur | SAINI TRADERS",
+        "Buy hand-grade & machine-grade stretch film rolls in Kanpur from SAINI TRADERS (Ispat Nagar). Exact micron, proper roll weight & fast local delivery.",
+        "Stretch Film Roll Supplier in Kanpur — SAINI TRADERS",
+        "Direct wholesale hand-grade, machine-grade, transparent and black stretch film rolls with fast delivery across Kanpur & Unnao.",
+        hbody,
+        [("Home", "/")],
+        FAQ_HOME,
+    ),
+)
+
+# ============================================================
+# 5. BRANDED 404 PAGE: /404.html
+# ============================================================
+body_404 = f'''<h2>Page Not Found (404)</h2>
+<p>The page you are looking for may have moved or does not exist. Use the links below to explore our stretch film range, local Kanpur delivery areas, or contact SAINI TRADERS directly for today's wholesale rate.</p>
+<div class="grid" style="margin:24px 0">
+  <div class="card"><h3><a href="{BASE}/">Homepage</a></h3><p>Overview of SAINI TRADERS stretch film supply in Kanpur.</p></div>
+  <div class="card"><h3><a href="{BASE}{PARENT}">Stretch Film Range</a></h3><p>Compare hand-grade, machine-grade, transparent &amp; black rolls.</p></div>
+  <div class="card"><h3><a href="{BASE}{url("kanpur")}">Kanpur Wholesale</a></h3><p>Direct local stock &amp; same-day Kanpur delivery details.</p></div>
+  <div class="card"><h3><a href="{BASE}{BLOG_INDEX}">Packaging Blog</a></h3><p>Read our pallet wrapping &amp; micron selection buyer's guide.</p></div>
+</div>'''
+
+html_404 = page(
+    "",
+    "Page Not Found | SAINI TRADERS, Kanpur",
+    "The requested page was not found on packagingtraders.in. Browse SAINI TRADERS stretch film rolls in Kanpur or contact us on WhatsApp.",
+    "Sorry, That Page Could Not Be Found",
+    "Looking for stretch film rolls in Kanpur? Jump straight to our product range or reach us on WhatsApp.",
+    body_404,
+    [("Home", "/")],
+    robots="noindex",
+)
+open(os.path.join(OUT, "404.html"), "w", encoding="utf-8").write(html_404)
+
+# ============================================================
+# 6. CLEAN SITEMAP.XML, ROBOTS.TXT, CNAME (URLs 100% unchanged!)
+# ============================================================
+sitemap_urls = [
+    "/",
+    PARENT,
+] + [url(l["slug"]) for l in LOCS] + [
+    BLOG_INDEX,
+    BLOG_SLUG,
 ]
+
 sitemap_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-for u, prio in sitemap_entries:
-    sitemap_xml += f"  <url>\n    <loc>{DOMAIN}{u}</loc>\n    <lastmod>2026-11-21</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>{prio}</priority>\n  </url>\n"
+for u in sitemap_urls:
+    sitemap_xml += f"  <url>\n    <loc>{DOMAIN}{u}</loc>\n    <lastmod>{LASTMOD}</lastmod>\n  </url>\n"
 sitemap_xml += "</urlset>\n"
-open(OUT+"/sitemap.xml","w").write(sitemap_xml)
+open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8").write(sitemap_xml)
+
 robots_content = f"""User-agent: *
 Allow: /
 Disallow:
@@ -767,7 +1293,6 @@ Allow: /
 
 Sitemap: {DOMAIN}/sitemap.xml
 """
-open(OUT+"/robots.txt","w").write(robots_content)
-open(OUT+"/CNAME","w").write("packagingtraders.in\n")
-
-
+open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8").write(robots_content)
+open(os.path.join(OUT, "CNAME"), "w", encoding="utf-8").write("packagingtraders.in\n")
+print("Built all 12 pages + 404.html + sitemap.xml + robots.txt successfully.")
