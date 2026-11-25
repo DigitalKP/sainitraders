@@ -11,7 +11,7 @@ GBP = "https://share.google/VzrvVFiXEuR6slk6Q"
 DIR = "https://www.google.com/maps/dir/?api=1&destination=D-95%2C+Ispat+Nagar%2C+Kanpur%2C+Uttar+Pradesh+208022"
 EMBED = "https://www.google.com/maps?q=D-95+Ispat+Nagar+Kanpur+Uttar+Pradesh+208022&output=embed"
 PARENT = "/stretch-film-supplier-near-me/"
-LASTMOD = "2026-11-25"
+LASTMOD = "2026-11-26"
 
 CSS = """:root{--n:#0b2447;--n2:#16365f;--g:#d4a72c;--bg:#fff;--s:#f3f6fa;--t:#1b2433;--m:#55627a;--l:#dbe3ee;--link:#0b57d0;--link-h:#0842a0}
 @media(prefers-color-scheme:dark){:root{--bg:#0a1424;--s:#102038;--t:#e8eef8;--m:#a9b7cc;--l:#223555;--n:#e8eef8;--n2:#cfdcf0;--link:#ffd166;--link-h:#ffe08a}.hero,.cta{--n:#0b2447;--n2:#16365f}}
@@ -239,11 +239,12 @@ FAQ_PARENT = [
 ]
 
 
-def schema(trail, faqs=None, article=None):
+def schema(trail, faqs=None, article=None, about_page=None):
     graph = [{
         "@type": "LocalBusiness",
         "@id": f"{DOMAIN}/#business",
         "name": NAME,
+        "founder": {"@type": "Person", "name": "Sujeet Saini"},
         "description": "Industrial packaging and stretch film supplier in Ispat Nagar, Kanpur supplying hand-grade, machine-grade, transparent and black LLDPE stretch film rolls across Kanpur and Unnao.",
         "url": f"{DOMAIN}/",
         "logo": f"{DOMAIN}/assets/logo.webp",
@@ -277,6 +278,14 @@ def schema(trail, faqs=None, article=None):
             "closes": "20:00",
         },
     }]
+    if about_page:
+        graph.append({
+            "@type": "AboutPage",
+            "name": about_page["name"],
+            "description": about_page["description"],
+            "url": about_page["url"],
+            "mainEntity": {"@id": f"{DOMAIN}/#business"},
+        })
     if article:
         graph.append({
             "@type": "BlogPosting",
@@ -328,10 +337,10 @@ GTM_BODY = """<!-- Google Tag Manager (noscript) -->
 <!-- End Google Tag Manager (noscript) -->"""
 
 
-def page(path, title, desc, h1, lead, body, trail, faqs=None, hero_img=None, og_image=None, og_type="website", article=None, robots=None):
+def page(path, title, desc, h1, lead, body, trail, faqs=None, hero_img=None, og_image=None, og_type="website", article=None, robots=None, about_page=None):
     bc = " &rsaquo; ".join(f'<a href="{BASE}{u}">{n}</a>' if i < len(trail) - 1 else n for i, (n, u) in enumerate(trail))
     crumb = f'<nav class="crumb w" aria-label="Breadcrumb">{bc}</nav>' if len(trail) > 1 else ""
-    ld = schema(trail, faqs, article) if robots != "noindex" else ""
+    ld = schema(trail, faqs, article, about_page) if robots != "noindex" else ""
     locs = " ".join(f'<a href="{BASE}{url(l["slug"])}">{l["name"]}</a>' for l in LOCS)
     img_tag = hero_img if hero_img is not None else ROLL
     og_img = og_image or f"{DOMAIN}/assets/stretch-film-pallet-hero.webp"
@@ -348,13 +357,13 @@ def page(path, title, desc, h1, lead, body, trail, faqs=None, hero_img=None, og_
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{t_esc}"><meta name="twitter:description" content="{d_esc}"><meta name="twitter:image" content="{og_img}">
 <link rel="icon" href="{BASE}/favicon.ico" sizes="48x48"><link rel="shortcut icon" href="{BASE}/favicon.ico"><link rel="icon" type="image/png" href="{BASE}/assets/icon-192.png" sizes="192x192"><link rel="apple-touch-icon" href="{BASE}/assets/apple-touch-icon.png"><style>{CSS}</style>{ld}</head><body>
 {GTM_BODY}
-<header><div class="w bar"><a class="logo" href="{BASE}/"><img src="{BASE}/assets/logo.webp" width="40" height="40" alt="SAINI TRADERS logo"><span>SAINI <b>TRADERS</b></span></a><nav aria-label="Main"><a href="{BASE}{PARENT}">Stretch Film</a><a href="{BASE}{url("kanpur")}">Kanpur</a><a href="{BASE}/blog/">Blog</a><a href="#contact">Contact</a></nav></div></header>
+<header><div class="w bar"><a class="logo" href="{BASE}/"><img src="{BASE}/assets/logo.webp" width="40" height="40" alt="SAINI TRADERS logo"><span>SAINI <b>TRADERS</b></span></a><nav aria-label="Main"><a href="{BASE}{PARENT}">Stretch Film</a><a href="{BASE}{url("kanpur")}">Kanpur</a><a href="{BASE}/blog/">Blog</a><a href="{BASE}/about/">About</a><a href="#contact">Contact</a></nav></div></header>
 {crumb}
 <section class="hero"><div class="w"><div><h1>{h1}</h1><p>{lead}</p><a class="btn" href="{WA_MSG}" rel="noopener">WhatsApp enquiry</a><a class="btn o" href="tel:+919140948445">Call 09140948445</a></div><div>{img_tag}</div></div></section>
 <main class="w">{body}</main>
 <section class="cta" id="contact"><div class="w"><h2>Contact {NAME}</h2><p>{ADDR}<br>Open Monday to Sunday, 9:00 AM to 8:00 PM</p><p>Phone: <a href="tel:+919140948445">09140948445</a> / <a href="tel:+917786843061">07786843061</a></p><a class="btn" href="{WA_MSG}" rel="noopener">Chat on WhatsApp</a> <a class="btn o" href="{DIR}" rel="noopener">Get directions</a> <a class="btn o" href="{GBP}" rel="noopener">View on Google Maps</a></div></section>
 <div class="w" style="padding-top:24px"><iframe class="map" title="SAINI TRADERS location map, Ispat Nagar, Kanpur" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{EMBED}"></iframe></div>
-<footer><div class="w"><p><strong>{NAME}</strong> (packagingtraders.in), Industrial Stretch Film &amp; Packaging Supplier, Ispat Nagar, Kanpur.</p><p>{locs} <a href="{BASE}/blog/">Blog</a></p></div></footer>
+<footer><div class="w"><p><strong>{NAME}</strong> (packagingtraders.in), Industrial Stretch Film &amp; Packaging Supplier, Ispat Nagar, Kanpur.</p><p>{locs} <a href="{BASE}/blog/">Blog</a> <a href="{BASE}/about/">About Us</a></p></div></footer>
 <a class="btn fab" href="{WA_MSG}" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a></body></html>'''
 
 
@@ -1138,7 +1147,7 @@ area_cards = "".join(
 )
 
 hbody = f'''<h2>Industrial Stretch Film Rolls Supplied Direct from Ispat Nagar, Kanpur</h2>
-<p><strong>SAINI TRADERS</strong> (<em>packagingtraders.in</em>) is a Kanpur-based industrial packaging supplier dealing in high-strength LLDPE <strong>stretch film rolls</strong> for pallet wrapping, factory dispatch, warehousing, and safe cargo transport. From our stock hub at <strong>D-95, Ispat Nagar, Bhautipratappur</strong>, we deliver both single rolls and bulk wholesale lots rapidly across Kanpur's industrial belts and neighbouring Unnao.</p>
+<p><strong>SAINI TRADERS</strong> (<em>packagingtraders.in</em>), led by owner <strong>Sujeet Saini</strong>, is a Kanpur-based industrial packaging supplier dealing in high-strength LLDPE <strong>stretch film rolls</strong> for pallet wrapping, factory dispatch, warehousing, and safe cargo transport. From our stock hub at <strong>D-95, Ispat Nagar, Bhautipratappur</strong>, we deliver both single rolls and bulk wholesale lots rapidly across Kanpur's industrial belts and neighbouring Unnao. <a href="{BASE}/about/">Learn more about SAINI TRADERS and our quality commitment.</a></p>
 <div class="trust-bar">Direct Wholesale Stock &nbsp;|&nbsp; Declared Net &amp; Core Weight &nbsp;|&nbsp; Exact Micron Consistency &nbsp;|&nbsp; Fast Local Dispatch</div>
 <p><a class="btn" href="{BASE}{PARENT}" style="color:#0b2447">Explore Stretch Film Range &amp; Specs</a></p>
 
@@ -1201,14 +1210,102 @@ write(
 )
 
 # ============================================================
-# 5. BRANDED 404 PAGE: /404.html
+# 5. ABOUT US PAGE: /about/
+# ============================================================
+ABOUT_PATH = "/about/"
+ABOUT_TITLE = "About SAINI TRADERS | Stretch Film Supplier in Kanpur"
+ABOUT_DESC = "Meet Sujeet Saini & SAINI TRADERS (packagingtraders.in), Ispat Nagar, Kanpur. Quality stretch film rolls, fair wholesale cost, instant supply & easy returns."
+ABOUT_FAQS = [
+    ("Who owns SAINI TRADERS and is packagingtraders.in your official website?", "Yes. packagingtraders.in is the official website of SAINI TRADERS, owned and managed by Sujeet Saini at D-95, Ispat Nagar, Bhautipratappur, Kanpur, Uttar Pradesh 208022."),
+    ("How does your easy return and replacement policy work?", "If any supplied roll does not match the agreed micron, core weight, or net film weight, inform us immediately. We arrange straightforward replacement or return without pushing you through complicated paperwork."),
+    ("Can I visit your Ispat Nagar stock point for face-to-face discussion before buying?", "Yes. Buyers are welcome to visit D-95, Ispat Nagar any day between 9:00 AM and 8:00 PM to check film stretch, inspect roll weights on the scale, and discuss recurring supply directly with Sujeet Saini."),
+    ("Do you handle urgent same-day orders as well as regular monthly factory supply?", "Yes. Because stock is maintained locally in Kanpur, we handle urgent instant dispatches as well as planned weekly and monthly supply for factories, godowns, and local traders."),
+]
+
+ABOUT_BODY = f'''<h2>Who We Are: Direct Industrial Stretch Film Supply in Kanpur</h2>
+<div class="pic"><img src="{BASE}/assets/stretch-film-rolls.webp" width="480" height="638" loading="lazy" decoding="async" alt="Industrial stretch film rolls stocked at SAINI TRADERS Ispat Nagar Kanpur"></div>
+<p><strong>SAINI TRADERS</strong> (operating online at <em>packagingtraders.in</em>) is a dedicated industrial stretch film supplier based at <strong>D-95, Ispat Nagar, Bhautipratappur, Kanpur, Uttar Pradesh 208022</strong>. Owned and actively led by <strong>Sujeet Saini</strong>, our business was built around one practical promise: giving Kanpur and Unnao buyers reliable stretch film rolls at fair wholesale rates, backed by honest weights, instant local availability, and real human accountability.</p>
+<p>Factories, godowns, wholesale traders, and retail packers depend on stretch film every single day to keep cartons secure and dispatch trucks moving on time. Instead of forcing local businesses to deal with distant dealers, inconsistent batches, or unreturned calls, we keep stock ready right inside Kanpur so every order is fast, transparent, and easy to verify.</p>
+<div class="trust-bar">Owner-Led Accountability (Sujeet Saini) &nbsp;|&nbsp; Verified Roll Weight &amp; Micron &nbsp;|&nbsp; Instant Local Supply &nbsp;|&nbsp; Easy Returns &amp; Face-to-Face Support</div>
+
+<h2>The Five Core Packaging Problems We Solve</h2>
+<p>Every operational decision at SAINI TRADERS is designed to remove the daily frustrations that industrial and commercial buyers face when sourcing stretch film:</p>
+<div class="grid">
+  <div class="card"><h3>Quality Work &amp; Exact Micron</h3><p>Weak, under-gauge film tears mid-wrap and doubles your film consumption. We supply consistent virgin LLDPE stretch film with declared paper core weight and net film weight so you can weigh rolls at delivery with complete confidence.</p></div>
+  <div class="card"><h3>Fair Direct Wholesale Cost</h3><p>Sourcing directly from local Kanpur stock cuts out multi-layer dealer commissions and unnecessary outstation freight charges, keeping your real cost per wrapped pallet genuinely competitive.</p></div>
+  <div class="card"><h3>Instant &amp; Timely Supply</h3><p>When a factory packing line runs low mid-shift, waiting 3–5 days for transport is not an option. Our ready stock in Ispat Nagar enables rapid, on-time dispatch across Kanpur and scheduled supply into Unnao.</p></div>
+  <div class="card"><h3>Easy Returns &amp; Replacement</h3><p>We stand behind every roll we deliver. If a roll does not match the ordered micron, width, or weight, you get straightforward, hassle-free return or replacement without endless excuses.</p></div>
+  <div class="card"><h3>Face-to-Face Problem Solving</h3><p>No anonymous call centres or disappearing brokers. Speak directly with owner Sujeet Saini on phone, WhatsApp, or in person at our Ispat Nagar address whenever you need load advice, sample checks, or quick resolution.</p></div>
+</div>
+
+<h2>How SAINI TRADERS Compares With Outstation Dealers</h2>
+<div class="tbl-wrap">
+  <table class="cmp">
+    <thead>
+      <tr><th>What Matters to Buyers</th><th>SAINI TRADERS (Ispat Nagar, Kanpur)</th><th>Typical Outstation / Broker Supply</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Quality &amp; Weight Proof</strong></td><td>Declared net &amp; core weight; weighable at delivery</td><td>Disputes hard to settle after unloading</td></tr>
+      <tr><td><strong>Pricing Transparency</strong></td><td>Direct local wholesale rates with minimal freight</td><td>Added broker margin &amp; transporter costs</td></tr>
+      <tr><td><strong>Supply Speed</strong></td><td>Instant local stock &amp; prompt dispatch</td><td>2–5 day wait times when stock runs out</td></tr>
+      <tr><td><strong>Returns &amp; Issues</strong></td><td>Easy replacement &amp; clear accountability</td><td>Slow follow-ups and return friction</td></tr>
+      <tr><td><strong>Communication</strong></td><td>Direct face-to-face &amp; phone support with Sujeet Saini</td><td>Routed through shifting sales agents</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>What We Supply Across Kanpur &amp; Unnao</h2>
+<p>We maintain focused expertise in industrial LLDPE stretch film so our inventory stays consistent and ready to dispatch:</p>
+<ul class="clean">
+  <li><strong>Hand-grade stretch film:</strong> Practical manual rolls for shops, workshops, courier bundling, furniture shifting, and moderate pallet volumes.</li>
+  <li><strong>Machine-grade stretch film:</strong> High-elongation rolls engineered for semi-automatic and automatic pallet wrapping machines with steady tension.</li>
+  <li><strong>Transparent stretch film:</strong> High-clarity wrap that keeps barcodes, shipping marks, and carton labels readable throughout transit.</li>
+  <li><strong>Black stretch film:</strong> Opaque wrap for privacy, pilferage deterrence, and UV protection on sensitive or high-value loads.</li>
+</ul>
+<p>Compare full product grades on our <a href="{BASE}{PARENT}">Stretch Film Range page</a>, or read our detailed <a href="{BASE}{BLOG_SLUG}">Best Stretch Film for Pallet Wrapping Buyer's Guide</a> to understand micron selection and cost per kg.</p>
+
+<h2>Local Industrial &amp; Commercial Areas We Actively Serve</h2>
+<p>From our central stock hub in Ispat Nagar, we deliver promptly to factories, distributors, workshops, and individual buyers across <a href="{BASE}{url("kanpur")}">Kanpur</a>, <a href="{BASE}{url("panki")}">Panki Industrial Area</a>, <a href="{BASE}{url("dada-nagar")}">Dada Nagar</a>, <a href="{BASE}{url("fazalganj")}">Fazalganj</a>, <a href="{BASE}{url("ratan-lal-nagar")}">Ratan Lal Nagar</a>, <a href="{BASE}{url("kidwai-nagar")}">Kidwai Nagar</a>, <a href="{BASE}{url("shastri-nagar")}">Shastri Nagar</a>, and nearby industrial belts in <a href="{BASE}{url("unnao")}">Unnao</a>.</p>
+
+<div class="cta-inline">
+  <h3>Speak Directly With Sujeet Saini for Your Next Stretch Film Order</h3>
+  <p>Whether you need a single roll today, a sample check before bulk buying, or dependable monthly factory supply, call, message on WhatsApp, or visit us face-to-face at D-95, Ispat Nagar, Kanpur.</p>
+  <a class="btn" href="{WA_MSG}" rel="noopener">WhatsApp SAINI TRADERS</a>
+  <a class="btn o" href="tel:+919140948445">Call 09140948445</a>
+  <a class="btn o" href="{BASE}{PARENT}">Explore Stretch Film Range</a>
+</div>
+
+<h2>Frequently Asked Questions About SAINI TRADERS</h2>
+{faq(ABOUT_FAQS)}'''
+
+write(
+    ABOUT_PATH,
+    page(
+        ABOUT_PATH,
+        ABOUT_TITLE,
+        ABOUT_DESC,
+        "About SAINI TRADERS, Kanpur",
+        "Led by Sujeet Saini at Ispat Nagar, Kanpur: quality stretch film rolls, direct wholesale pricing, instant local supply, easy returns, and face-to-face support.",
+        ABOUT_BODY,
+        [("Home", "/"), ("About Us", ABOUT_PATH)],
+        faqs=ABOUT_FAQS,
+        about_page={
+            "name": ABOUT_TITLE,
+            "description": ABOUT_DESC,
+            "url": f"{DOMAIN}{ABOUT_PATH}",
+        },
+    ),
+)
+
+# ============================================================
+# 6. BRANDED 404 PAGE: /404.html
 # ============================================================
 body_404 = f'''<h2>Page Not Found (404)</h2>
-<p>The page you are looking for may have moved or does not exist. Use the links below to explore our stretch film range, local Kanpur delivery areas, or contact SAINI TRADERS directly for today's wholesale rate.</p>
+<p>The page you are looking for may have moved or does not exist. Use the links below to explore our stretch film range, local Kanpur delivery areas, or learn about SAINI TRADERS.</p>
 <div class="grid" style="margin:24px 0">
   <div class="card"><h3><a href="{BASE}/">Homepage</a></h3><p>Overview of SAINI TRADERS stretch film supply in Kanpur.</p></div>
   <div class="card"><h3><a href="{BASE}{PARENT}">Stretch Film Range</a></h3><p>Compare hand-grade, machine-grade, transparent &amp; black rolls.</p></div>
-  <div class="card"><h3><a href="{BASE}{url("kanpur")}">Kanpur Wholesale</a></h3><p>Direct local stock &amp; same-day Kanpur delivery details.</p></div>
+  <div class="card"><h3><a href="{BASE}{ABOUT_PATH}">About SAINI TRADERS</a></h3><p>Meet owner Sujeet Saini &amp; our quality, pricing, and easy-return standards.</p></div>
   <div class="card"><h3><a href="{BASE}{BLOG_INDEX}">Packaging Blog</a></h3><p>Read our pallet wrapping &amp; micron selection buyer's guide.</p></div>
 </div>'''
 
@@ -1225,10 +1322,11 @@ html_404 = page(
 open(os.path.join(OUT, "404.html"), "w", encoding="utf-8").write(html_404)
 
 # ============================================================
-# 6. CLEAN SITEMAP.XML, ROBOTS.TXT, CNAME (URLs 100% unchanged!)
+# 7. CLEAN SITEMAP.XML, ROBOTS.TXT, CNAME (Existing URLs 100% unchanged!)
 # ============================================================
 sitemap_urls = [
     "/",
+    ABOUT_PATH,
     PARENT,
 ] + [url(l["slug"]) for l in LOCS] + [
     BLOG_INDEX,
@@ -1295,4 +1393,4 @@ Sitemap: {DOMAIN}/sitemap.xml
 """
 open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8").write(robots_content)
 open(os.path.join(OUT, "CNAME"), "w", encoding="utf-8").write("packagingtraders.in\n")
-print("Built all 12 pages + 404.html + sitemap.xml + robots.txt successfully.")
+print("Built all 13 pages + 404.html + sitemap.xml + robots.txt successfully.")
